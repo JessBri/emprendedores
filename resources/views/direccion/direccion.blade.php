@@ -30,6 +30,9 @@
                         <p class="mb-0 font-size-13 text-azuloscuro-movistar text-left px-3">
                             {{$direccion->direccionDireccion}}
                         </p>
+                        <p class="mb-0 font-size-13 text-azuloscuro-movistar text-left px-3">
+                            {{$direccion->telefonoDireccion}}
+                        </p>
                         <p class="font-size-13 text-gris-movistar-4 text-left px-3">{{ $direccion->ciudades->provincias->nombreProvincia }} -
                             {{ $direccion->ciudades->nombreCiudad }}</p>
                     </div>

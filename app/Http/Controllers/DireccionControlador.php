@@ -60,4 +60,10 @@ class DireccionControlador extends Controller
             ]);
         }
     }
+
+    public function viewEditarDireccion($idDireccion)
+    {
+        $direcciones = Direccion::where('idDireccion', $idDireccion)->first();
+        return view('direccion.editarDireccion', compact('direcciones'));
+    }
 }

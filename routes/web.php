@@ -110,6 +110,11 @@ Route::post('/direccion/crear', [
     'crearDireccion',
 ])->name('crearDireccion');
 
+Route::get('/direccion/editar/{idDireccion}', [
+    DireccionControlador::class,
+    'viewEditarDireccion',
+])->name('viewEditarDireccion');
+
 // Enviar correo
 Route::get('enviar', [
     'as' => 'enviar',
