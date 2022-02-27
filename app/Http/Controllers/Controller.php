@@ -79,8 +79,32 @@ class Controller extends BaseController
     }
 
 
-    public function prueba(Request $request){
-        return view('emails.prueba');
+    public function restauraContrasena(Request $request,$codigo){
+
+        $emprendedor = Emprendedor::where('codigoEmprendedor',$codigo)->first();
+
+        if($emprendedor){
+            return view('login.restaura',compact('emprendedor'));
+        }else{
+            return redirect()->route('index');
+        }
+    }
+
+    public function cambiaNuevaContrasena(Request $request,$codigo){
+
+        $emprendedor = Emprendedor::where('codigoEmprendedor',$codigo)->first();
+
+        if($emprendedor){
+
+            $emprendedor->codigoEmprendedor = "";
+            $emprendedor->contrasenaEmprendedor = md5($request->contrasenaEmprendedor);
+            $emprendedor->estadoEmprendedor = true;
+            $emprendedor->save();
+            return response()->json(['success'=>true]);
+
+        }else{
+            return response()->json(['error'=>true]);
+        }
     }
 
     public function cerrarSesion(){

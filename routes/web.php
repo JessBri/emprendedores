@@ -39,7 +39,9 @@ Route::get('/cerrarsesion',[Controller::class, 'cerrarSesion'])->name('cerrarSes
 
 Route::post('/recuperaContrasena', [Controller::class, 'recuperaContrasena'])->name('recuperaContrasena');
 
-Route::get('/password/{codigo}', [Controller::class, 'prueba'])->name('prueba');
+Route::get('/password/{codigo}', [Controller::class, 'restauraContrasena'])->name('restauraContrasena');
+
+Route::post('/password/{codigo}', [Controller::class, 'cambiaNuevaContrasena'])->name('cambiaNuevaContrasena');
 
 //Imagen
 

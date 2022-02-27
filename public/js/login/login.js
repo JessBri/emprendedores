@@ -21,7 +21,7 @@ $(document).ready(function(){
 
                     swal({
                         title: "Petición enviada",
-                        text: "Si el usuario se encuentra registrado te llegará un correo de Recuperación de contraseña. Favor revisar.",
+                        text: "Si el usuario se encuentra registrado te llegará un correo de recuperación de contraseña. Por favor revisa tu bandeja de entrada de correo.",
                         icon: "success",
                         type: "success"
                     }).then(function(){
