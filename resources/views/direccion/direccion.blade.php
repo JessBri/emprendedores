@@ -46,7 +46,6 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Dirección</th>
                                 <th scope="col">Teléfono</th>
-                                <th scope="col">Correo electrónico</th>
                                 <th scope="col">Ciudad</th>
                                 <th scope="col">Provincia</th>
                                 </tr>
@@ -57,7 +56,6 @@
                                     <th scope="row">{{ ++$cont }}</th>
                                     <td>{{ $direccion->direccionDireccion }}</td>
                                     <td>{{ $direccion->telefonoDireccion }}</td>
-                                    <td>{{ $direccion->correoDireccion }}</td>
                                     <td>{{ $direccion->ciudades->nombreCiudad }}</td>
                                     <td>{{ $direccion->ciudades->provincias->nombreProvincia }}</td>
                                     <td><i class="bi bi-pencil-fill"></i>

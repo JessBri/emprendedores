@@ -44,7 +44,6 @@ class DireccionControlador extends Controller
                 $direccion->nombreDireccion = $request->nombreDireccion;
                 $direccion->direccionDireccion = $request->direccionDireccion;
                 $direccion->telefonoDireccion = $request->telefonoDireccion;
-                $direccion->correoDireccion = $request->correoDireccion;
                 $direccion->idCiudad = $request->idCiudad;
                 $direccion->idEmprendedor = 1;
                 $direccion->save();

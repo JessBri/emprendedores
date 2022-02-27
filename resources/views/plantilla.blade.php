@@ -56,7 +56,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Mi perfil</a>
                                 <a class="dropdown-item" href="{{ route('categoria') }}"><i class="bi bi-pencil-fill"></i> Categorias</a>
-                                <a class="dropdown-item" href="{{ route('categoria') }}"><i class="bi bi-pencil-fill"></i> Direcciones</a>
+                                <a class="dropdown-item" href="{{ route('direccion') }}"><i class="bi bi-pencil-fill"></i> Direcciones</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" data-toggle="modal" data-target="#cerrarSesionModal" href="#"><i class="bi bi-box-arrow-left"></i> Salir</a>
                             </div>

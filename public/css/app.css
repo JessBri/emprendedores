@@ -2,26 +2,15 @@ body {
     padding-top: 70px;
 }
 
-.cursor-pointer {
-    cursor: pointer;
+input,
+textarea {
+    background-color: #f4f4f3 !important;
+    border-radius: 4px !important;
+    border: none !important;
 }
 
-.card-columns {
-    @include media-breakpoint-only(xl) {
-        column-count: 6;
-    }
-
-    @include media-breakpoint-only(lg) {
-        column-count: 5;
-    }
-
-    @include media-breakpoint-only(md) {
-        column-count: 3;
-    }
-
-    @include media-breakpoint-only(sm) {
-        column-count: 2;
-    }
+.cursor-pointer {
+    cursor: pointer;
 }
 
 label.error {
@@ -40,4 +29,60 @@ input.error {
 
 .swal-text {
     text-align: center;
-  }
+}
+
+.input-lh {
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    padding-top: 18px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #86888c;
+    background-color: #f4f4f3 !important;
+    background-clip: padding-box;
+    height: 48px;
+    border: none !important;
+}
+
+.label-holder {
+    color: #86888c;
+    position: absolute;
+    top: 10px;
+    padding-left: 14px;
+    transition: 0.5s ease;
+}
+.label-holder span {
+    color: #86888c;
+}
+.label-span-inactivo {
+    color: #86888c;
+}
+.input-lh:focus ~ .label-holder {
+    top: 4px;
+    font-size: 12px;
+    padding-left: 12px;
+    color: #00a9e0;
+}
+.input-lh:focus ~ .label-holder span {
+    color: #e9426d;
+}
+.spansito {
+    color: #e9426d !important;
+}
+
+.custom-select {
+    color: #50535a;
+    background: #e9eae8 url("../img/down-arrow.svg") no-repeat right 0.75rem
+        center;
+    border: 1px solid #e9eae8;
+}
+
+.custom-select:focus {
+    background: white url("../img/down-arrow.svg") no-repeat right 0.75rem
+        center;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
