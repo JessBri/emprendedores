@@ -34,3 +34,7 @@ input.error {
     font-weight: 300;
     color: red;
 }
+
+.swal-text {
+    text-align: center;
+  }

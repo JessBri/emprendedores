@@ -12,6 +12,10 @@ $(document).ready(function () {
             apellidoEmprendedor: {
                 required: true,
             },
+            correoEmprendedor: {
+                required: true,
+                email: true
+            },
             contrasenaEmprendedor: {
                 required: true,
                 minlength: 5,
@@ -32,7 +36,11 @@ $(document).ready(function () {
                 required: "El campo nombre es requerido"
             },
             apellidoEmprendedor: {
-                required: "El campo nombre es requerido"
+                required: "El campo apellido es requerido"
+            },
+            correoEmprendedor: {
+                required: "El campo e-mail es requerido",
+                email: "Ingrese un correo electrónico válido"
             },
             contrasenaEmprendedor: {
                 required: "El campo contraseña es requerido",

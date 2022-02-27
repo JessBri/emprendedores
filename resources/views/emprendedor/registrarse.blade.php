@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <br>
                     @if (session()->has('success'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-warning">
                             {{ session()->get('success') }}
                         </div>
                     @endif
@@ -38,9 +38,9 @@
                                 placeholder="Ingrese el apellido del emprendedor" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="razonSocialEmprendedor">Razón Social</label>
-                            <input type="text" id="razonSocialEmprendedor" name="razonSocialEmprendedor"
-                                placeholder="Ingrese el apellido del emprendedor" class="form-control">
+                            <label for="apellidoEmprendedor">E-mail</label>
+                            <input type="text" id="correoEmprendedor" name="correoEmprendedor"
+                                placeholder="Ingrese el correo electronico del emprendedor" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="contrasenaEmprendedor">Contraseña</label>
@@ -51,6 +51,11 @@
                             <label for="confContrasenaEmprendedor">Confirmación contraseña</label>
                             <input type="password" id="confContrasenaEmprendedor" name="confContrasenaEmprendedor"
                                 placeholder="Confirme la contraseña del emprendedor" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="razonSocialEmprendedor">Razón Social</label>
+                            <input type="text" id="razonSocialEmprendedor" name="razonSocialEmprendedor"
+                                placeholder="Ingrese el apellido del emprendedor" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="paginaWebEmprendedor">Página web</label>
