@@ -6,6 +6,9 @@ use App\Http\Controllers\ImagenControlador;
 use App\Http\Controllers\EmprendedorControlador;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,3 +87,20 @@ Route::delete('/categoria/eliminar/{idCategoria}', [
     CategoriaControlador::class,
     'eliminarCategoria',
 ])->name('eliminarCategoria');
+
+Route::get('enviar', ['as' => 'enviar', function () {
+
+    //Str::random(10);
+
+    $data = [   'link' => 'http://127.0.0.1:8000/password/'.Str::random(10),
+                'codigo' => Str::random(10),
+                'nombre' => 'Jessica Arciniega'
+            ];
+    Mail::send('emails.notificacion', $data, function ($message) {
+        $message->from('emprendedor.uisrael@gmail.com', 'Proyecto Emprendedores');
+        $message->to('luis.borja1722@gmail.com')->subject('Recuperación de contraseña');
+    });
+    return "Se envío el email";
+}]);
+
+Route::get('/password/{codigo}', [Controller::class, 'prueba'])->name('prueba');

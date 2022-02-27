@@ -21,4 +21,9 @@ class Controller extends BaseController
         return view('login.login');
 
     }
+    public function prueba(Request $request){
+
+        return view('emails.prueba');
+
+    }
 }

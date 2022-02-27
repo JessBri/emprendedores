@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Emprendedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Mail\Mailable;
 
 class EmprendedorControlador extends Controller
 {

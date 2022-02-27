@@ -18,8 +18,10 @@ class CreateEmprendedorsTable extends Migration
             $table->string('identificacionEmprendedor');
             $table->string('nombreEmprendedor')->nullable();
             $table->string('apellidoEmprendedor')->nullable();
+            $table->string('correoEmprendedor')->unique();
             $table->string('razonSocialEmprendedor')->nullable();
             $table->string('contrasenaEmprendedor');
+            $table->string('codigoEmprendedor')->nullable();
             $table->string('paginaWebEmprendedor');
             $table->timestamps();
         });
