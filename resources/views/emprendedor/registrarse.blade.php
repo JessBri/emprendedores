@@ -8,46 +8,57 @@
                     <i class="bi bi-person-plus-fill"></i> Formulario de registro de emprendedor
                 </div>
                 <div class="card-body">
+                    <br>
+                    @if (session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
+                    @if (session()->has('error'))
+                        <div class="alert alert-danger">
+                            {{ session()->get('error') }}
+                        </div>
+                    @endif
                     <form name="formEmprendedor" id="formEmprendedor" method="post"
-                        action="{{ url('store-form') }}">
+                        action="{{ route('nuevoEmprendedor') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Identificación</label>
-                            <input type="text" id="title" name="title" class="form-control" required="">
+                            <label for="identificacionEmprendedor">Identificación</label>
+                            <input type="text" id="identificacionEmprendedor" name="identificacionEmprendedor"
+                                placeholder="Ingrese la identificación del emprendedor" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Nombre</label>
-                            <input type="text" id="title" name="title" class="form-control" required="">
+                            <label for="nombreEmprendedor">Nombre</label>
+                            <input type="text" id="nombreEmprendedor" name="nombreEmprendedor"
+                                placeholder="Ingrese el nombre del emprendedor" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Apellido</label>
-                            <input type="text" id="title" name="title" class="form-control" required="">
+                            <label for="apellidoEmprendedor">Apellido</label>
+                            <input type="text" id="apellidoEmprendedor" name="apellidoEmprendedor"
+                                placeholder="Ingrese el apellido del emprendedor" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Razón Social</label>
-                            <input type="text" id="title" name="title" class="form-control" required="">
+                            <label for="razonSocialEmprendedor">Razón Social</label>
+                            <input type="text" id="razonSocialEmprendedor" name="razonSocialEmprendedor"
+                                placeholder="Ingrese el apellido del emprendedor" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Contraseña</label>
-                            <input type="text" id="title" name="title" class="form-control" required="">
+                            <label for="contrasenaEmprendedor">Contraseña</label>
+                            <input type="password" id="contrasenaEmprendedor" name="contrasenaEmprendedor"
+                                placeholder="Ingrese la contraseña del emprendedor" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Confirmación contraseña</label>
-                            <input type="text" id="title" name="title" class="form-control" required="">
+                            <label for="confContrasenaEmprendedor">Confirmación contraseña</label>
+                            <input type="password" id="confContrasenaEmprendedor" name="confContrasenaEmprendedor"
+                                placeholder="Confirme la contraseña del emprendedor" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Página web</label>
-                            <input type="text" id="title" name="title" class="form-control" required="">
+                            <label for="paginaWebEmprendedor">Página web</label>
+                            <input type="text" id="paginaWebEmprendedor" name="paginaWebEmprendedor"
+                                placeholder="Ingrese la pagina web del emprendedor" class="form-control">
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Identificación</label>
-                            <input type="text" id="title" name="title" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Description</label>
-                            <textarea name="description" class="form-control" required=""></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-block"><i class="bi bi-person-plus"></i> Registrar
+                            Emprendedor</button>
                     </form>
                 </div>
             </div>
@@ -58,4 +69,3 @@
 @section('scripts')
     <script src="{{ asset('js/validacion/emprendedor.js') }}"></script>
 @endsection
-

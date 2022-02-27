@@ -49,6 +49,11 @@ Route::get('/emprendedor/nuevo', [
     'creaEmprendedor',
 ])->name('creaEmprendedor');
 
+Route::post('/emprendedor/nuevo', [
+    EmprendedorControlador::class,
+    'nuevoEmprendedor'
+])->name('nuevoEmprendedor');
+
 //Categoria
 
 Route::get('/categoria', [CategoriaControlador::class, 'categoria'])->name(
