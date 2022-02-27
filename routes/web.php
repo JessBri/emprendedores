@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CategoriaControlador;
+use App\Http\Controllers\DireccionControlador;
 use App\Http\Controllers\ImagenControlador;
 use App\Http\Controllers\EmprendedorControlador;
 use Illuminate\Support\Facades\Route;
@@ -79,3 +80,24 @@ Route::delete('/categoria/eliminar/{idCategoria}', [
     CategoriaControlador::class,
     'eliminarCategoria',
 ])->name('eliminarCategoria');
+
+//Direcciones
+
+Route::get('/direccion', [DireccionControlador::class, 'direccion'])->name(
+    'direccion'
+);
+
+Route::get('/direccion/crear', [
+    DireccionControlador::class,
+    'viewCrearDireccion',
+])->name('viewCrearDireccion');
+
+Route::get('/direccion/ciudad/{idProvincia}', [
+    DireccionControlador::class,
+    'consultaCiudadesPorProvincia',
+])->name('consultaCiudadesPorProvincia');
+
+Route::post('/direccion/crear', [
+    DireccionControlador::class,
+    'crearDireccion',
+])->name('crearDireccion');

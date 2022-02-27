@@ -15,13 +15,20 @@ class CreateDireccionsTable extends Migration
     {
         Schema::create('direccions', function (Blueprint $table) {
             $table->bigIncrements('idDireccion');
+            $table->string('nombreDireccion');
             $table->string('direccionDireccion');
             $table->string('telefonoDireccion');
             $table->string('correoDireccion');
             $table->unsignedBigInteger('idCiudad');
-            $table->foreign('idCiudad')->references('idCiudad')->on('ciudads');
+            $table
+                ->foreign('idCiudad')
+                ->references('idCiudad')
+                ->on('ciudads');
             $table->unsignedBigInteger('idEmprendedor');
-            $table->foreign('idEmprendedor')->references('idEmprendedor')->on('emprendedors');
+            $table
+                ->foreign('idEmprendedor')
+                ->references('idEmprendedor')
+                ->on('emprendedors');
             $table->timestamps();
         });
     }
