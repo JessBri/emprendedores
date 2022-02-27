@@ -1,29 +1,48 @@
-$(document).ready(function(){
-    console.log("xD");
+$(document).ready(function () {
     $("#formEmprendedor").validate({
         rules: {
-          name : {
-            required: true,
-            minlength: 3
-          },
-          age: {
-            required: true,
-            number: true,
-            min: 18
-          },
-          email: {
-            required: true,
-            email: true
-          },
-          weight: {
-            required: {
-              depends: function(elem) {
-                return $("#age").val() > 50
-              }
+            identificacionEmprendedor: {
+                required: true,
+                minlength: 10,
+                number: true
             },
-            number: true,
-            min: 0
-          }
+            nombreEmprendedor: {
+                required: true,
+            },
+            apellidoEmprendedor: {
+                required: true,
+            },
+            contrasenaEmprendedor: {
+                required: true,
+                minlength: 5,
+            },
+            confContrasenaEmprendedor: {
+                required: true,
+                minlength: 5,
+                equalTo: "#contrasenaEmprendedor",
+            },
+        },
+        messages: {
+            identificacionEmprendedor: {
+                required: "El campo identificación es requerido",
+                minlength: jQuery.validator.format("Al menos {0} caracteres minimos!"),
+                number: "Se admiten solamente números!"
+            },
+            nombreEmprendedor: {
+                required: "El campo nombre es requerido"
+            },
+            apellidoEmprendedor: {
+                required: "El campo nombre es requerido"
+            },
+            contrasenaEmprendedor: {
+                required: "El campo contraseña es requerido",
+                minlength: jQuery.validator.format("Al menos {0} caracteres minimos!"),
+            },
+            confContrasenaEmprendedor: {
+                required: "La confirmación del campo contraseña es requerido",
+                minlength: jQuery.validator.format("Al menos {0} caracteres minimos!"),
+                equalTo: "Las contraseñas no coinciden",
+            },
         }
-      });
+    });
 });

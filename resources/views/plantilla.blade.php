@@ -51,12 +51,12 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Menú principal
+                                <i class="bi bi-list"></i> Menú principal
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('iniciaSesion') }}">Iniciar Sesión</a>
+                                <a class="dropdown-item" href="{{ route('iniciaSesion') }}"><i class="bi bi-box-arrow-in-left"></i> Iniciar Sesión</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('creaEmprendedor') }}">Registrarse</a>
+                                <a class="dropdown-item" href="{{ route('creaEmprendedor') }}"><i class="bi bi-person-plus-fill"></i> Registrarse</a>
                                 </div>
                             </li>
                         @endif

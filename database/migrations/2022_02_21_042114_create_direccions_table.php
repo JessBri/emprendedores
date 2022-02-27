@@ -18,7 +18,7 @@ class CreateDireccionsTable extends Migration
             $table->string('nombreDireccion');
             $table->string('direccionDireccion');
             $table->string('telefonoDireccion');
-            $table->string('correoDireccion');
+            $table->string('nombreDireccion');
             $table->unsignedBigInteger('idCiudad');
             $table
                 ->foreign('idCiudad')

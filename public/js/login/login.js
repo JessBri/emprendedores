@@ -7,21 +7,12 @@ $(document).ready(function(){
     });
 
     var data;
-    $('#formLogin').submit(function(e){
+    $('#enviaCorreoRecuperacion').click(function(e){
         e.preventDefault();
-        data = $(this).serializeArray();
-        console.log(data);
-
-        $.ajax({
-            url: '/login/validar',
-            type:'POST',
-            dataType: 'JSON',
-            data: data,
-            success: function(data) {
-                console.log(data);
-            }
-        });
+        console.log($("#correoRecuperacion").val());
 
     });
+
+
 
 });
