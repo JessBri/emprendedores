@@ -8,11 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Emprendedor extends Model
 {
     protected $primaryKey = 'idEmprendedor';
-    protected $fillable = ['identificacionEmprendedor',
+    protected $fillable = [
+     'identificacionEmprendedor',
      'nombreEmprendedor',
      'apellidoEmprendedor',
+     'correoEmprendedor',
+     'estadoEmprendedor',
      'razonSocialEmprendedor',
      'contrasenaEmprendedor',
+     'codigoEmprendedor',
      'paginaWebEmprendedor',
     ];
     use HasFactory;

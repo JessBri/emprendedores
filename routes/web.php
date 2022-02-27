@@ -27,9 +27,19 @@ Route::get('/', [Controller::class, 'index'])->name('index');
 
 Route::get('/login', [Controller::class, 'login'])->name('iniciaSesion');
 
+Route::post('/login', [Controller::class, 'logueaSistema'])->name('logueaSistema');
+
 Route::get('/login/validar', [Controller::class, 'validaLogin'])->name(
     'validaLogin'
 );
+
+Route::get('/cerrarsesion',[Controller::class, 'cerrarSesion'])->name('cerrarSesion');
+
+//Recuperacion
+
+Route::post('/recuperaContrasena', [Controller::class, 'recuperaContrasena'])->name('recuperaContrasena');
+
+Route::get('/password/{codigo}', [Controller::class, 'prueba'])->name('prueba');
 
 //Imagen
 
@@ -57,6 +67,14 @@ Route::post('/emprendedor/nuevo', [
     EmprendedorControlador::class,
     'nuevoEmprendedor',
 ])->name('nuevoEmprendedor');
+
+Route::get('/emprendedor/{codigo}', [
+    EmprendedorControlador::class,
+    'confirmaEmprendedor',
+])->name('confirmaEmprendedor');
+
+
+
 
 //Categoria
 
@@ -139,4 +157,3 @@ Route::get('enviar', [
     },
 ]);
 
-Route::get('/password/{codigo}', [Controller::class, 'prueba'])->name('prueba');
