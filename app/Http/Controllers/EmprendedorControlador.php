@@ -15,6 +15,12 @@ class EmprendedorControlador extends Controller
         return view('emprendedor.registrarse');
     }
 
+    public function perfilEmprendedor(Request $request){
+        $idemprendedor = session('usuarioConectado')['idEmprendedor'];
+        $emprendedor = Emprendedor::where('idEmprendedor', '=', $idemprendedor)->first();
+        return view('emprendedor.editaEmprededor',compact('emprendedor'));
+    }
+
 
     public function nuevoEmprendedor(Request $request)
     {
@@ -31,6 +37,7 @@ class EmprendedorControlador extends Controller
                 'correoEmprendedor' => $request->correoEmprendedor,
                 'contrasenaEmprendedor' => md5($request->contrasenaEmprendedor),
                 'paginaWebEmprendedor' => $request->paginaWebEmprendedor,
+                'tipoEmprendedor' => "emprendedor",
                 'codigoEmprendedor' => $codigoGenerado,
                 'estadoEmprendedor' => false,
             ]);
@@ -73,4 +80,44 @@ class EmprendedorControlador extends Controller
         }
     }
 
+    public function passwordEmprendedor(Request $request){
+
+        if (session()->has('usuarioConectado')){
+            return view('emprendedor.cambiaPassword');
+        }else{
+            abort(404);
+        }
+
+    }
+
+    public function editaEmprendedor(Request $request){
+        $emprendedor = Emprendedor::where('idEmprendedor',session('usuarioConectado')['idEmprendedor'])->first();
+        if($emprendedor){
+            $emprendedor->identificacionEmprendedor = $request->identificacionEmprendedor;
+            $emprendedor->nombreEmprendedor = $request->nombreEmprendedor;
+            $emprendedor->apellidoEmprendedor = $request->apellidoEmprendedor;
+            $emprendedor->correoEmprendedor = $request->correoEmprendedor;
+            $emprendedor->razonSocialEmprendedor = $request->razonSocialEmprendedor;
+            $emprendedor->paginaWebEmprendedor = $request->paginaWebEmprendedor;
+
+            $emprendedor->save();
+
+            $request->session()->put('usuarioConectado',$emprendedor);
+
+            return back()->with('success', 'La información fue actualizada correctamente.');
+        }else{
+            return back()->with('error', 'Error al actualizar la información');
+        }
+    }
+
+    public function editaPasswordEmprendedor(Request $request){
+        $emprendedor = Emprendedor::where('idEmprendedor',session('usuarioConectado')['idEmprendedor'])->first();
+        if($emprendedor){
+            $emprendedor->contrasenaEmprendedor = md5($request->contrasenaEmprendedor);
+            $emprendedor->save();
+            return back()->with('success', 'La contraseña fue actualizada correctamente.');
+        }else{
+            return back()->with('error', 'Error al actualizar la información');
+        }
+    }
 }

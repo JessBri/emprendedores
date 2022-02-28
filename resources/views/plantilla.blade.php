@@ -41,11 +41,26 @@
                 <ul class="navbar-nav ml-auto">
                     @if (session('usuarioConectado'))
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="bi bi-easel-fill"></i> Mis Productos</a>
+                            <a class="nav-link" href="#"><i class="bi bi-easel-fill"></i> Mis Articulos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="bi bi-cloud-fog2-fill"></i> Mis Servicios</a>
+                            <a class="nav-link" href="{{ route('direccion') }}"><i class="bi bi-signpost-2"></i> Mis Direcciones</a>
                         </li>
+                        @if (session('usuarioConectado')['tipoEmprendedor'] == 'emprendedor')
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bi bi-gear"></i>
+                                    Gestión de datos
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('categoria') }}"><i
+                                            class="bi bi-pencil-fill"></i> Categorias</a>
+                                    <a class="dropdown-item" href="#"><i class="bi bi-pencil-fill"></i> Provincias</a>
+                                    <a class="dropdown-item" href="#"><i class="bi bi-pencil-fill"></i> Ciudades</a>
+                                </div>
+                            </li>
+                        @endif
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,11 +69,13 @@
                                 {{ session('usuarioConectado')['apellidoEmprendedor'] }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Mi perfil</a>
-                                <a class="dropdown-item" href="{{ route('categoria') }}"><i class="bi bi-pencil-fill"></i> Categorias</a>
-                                <a class="dropdown-item" href="{{ route('categoria') }}"><i class="bi bi-pencil-fill"></i> Direcciones</a>
+                                <a class="dropdown-item" href="{{ route('perfilEmprendedor') }}"><i
+                                        class="bi bi-person"></i> Mi perfil</a>
+                                <a class="dropdown-item" href="{{ route('passwordEmprendedor') }}"><i
+                                        class="bi bi-gear"></i> Cambiar contraseña</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" data-toggle="modal" data-target="#cerrarSesionModal" href="#"><i class="bi bi-box-arrow-left"></i> Salir</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#cerrarSesionModal"
+                                    href="#"><i class="bi bi-box-arrow-left"></i> Salir</a>
                             </div>
                         </li>
                     @endif
@@ -99,8 +116,10 @@
                     <center>¿ Esta seguro de cerrar su sesión del proyecto ?</center>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="bi bi-x-circle"></i> No cerrar</button>
-                    <a role="button" class="btn btn-danger" href="{{ route('cerrarSesion') }}"><i class="bi bi-box-arrow-left"></i> Cerrar sesión</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="bi bi-x-circle"></i>
+                        No cerrar</button>
+                    <a role="button" class="btn btn-danger" href="{{ route('cerrarSesion') }}"><i
+                            class="bi bi-box-arrow-left"></i> Cerrar sesión</a>
                 </div>
             </div>
         </div>

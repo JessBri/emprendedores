@@ -16,6 +16,7 @@ class Emprendedor extends Model
      'estadoEmprendedor',
      'razonSocialEmprendedor',
      'contrasenaEmprendedor',
+     'tipoEmprendedor',
      'codigoEmprendedor',
      'paginaWebEmprendedor',
     ];

@@ -75,6 +75,27 @@ Route::get('/emprendedor/{codigo}', [
     'confirmaEmprendedor',
 ])->name('confirmaEmprendedor');
 
+Route::get('/emprendedor', [
+    EmprendedorControlador::class,
+    'perfilEmprendedor',
+])->name('perfilEmprendedor');
+
+Route::post('/emprendedor', [
+    EmprendedorControlador::class,
+    'editaEmprendedor',
+])->name('editaEmprendedor');
+
+Route::get('/cambiaContrasena', [
+    EmprendedorControlador::class,
+    'passwordEmprendedor',
+])->name('passwordEmprendedor');
+
+Route::post('/cambiaContrasena', [
+    EmprendedorControlador::class,
+    'editaPasswordEmprendedor',
+])->name('editaPasswordEmprendedor');
+
+
 
 
 
@@ -129,28 +150,4 @@ Route::post('/direccion/crear', [
     DireccionControlador::class,
     'crearDireccion',
 ])->name('crearDireccion');
-
-// Enviar correo
-Route::get('enviar', [
-    'as' => 'enviar',
-    function () {
-        //Str::random(10);
-
-        $data = [
-            'link' => 'http://127.0.0.1:8000/password/' . Str::random(10),
-            'codigo' => Str::random(10),
-            'nombre' => 'Jessica Arciniega',
-        ];
-        Mail::send('emails.notificacion', $data, function ($message) {
-            $message->from(
-                'emprendedor.uisrael@gmail.com',
-                'Proyecto Emprendedores'
-            );
-            $message
-                ->to('luis.borja1722@gmail.com')
-                ->subject('Recuperación de contraseña');
-        });
-        return 'Se envío el email';
-    },
-]);
 
