@@ -2,83 +2,79 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ciudad;
+use App\Models\Provincia;
 use Illuminate\Http\Request;
+use Validator;
 
 class CiudadControlador extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function ciudad(Request $request)
     {
-        //
+        $ciudades = Ciudad::all();
+        return view('ciudad.ciudad', compact('ciudades'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function viewCrearCiudad(Request $request)
     {
-        //
+        $provincias = Provincia::get();
+        return view('ciudad.crearCiudad', compact('provincias'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function crearCiudad(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nombreCiudad' => 'required',
+        ]);
+
+        if ($validator->passes()) {
+            try {
+                $ciudad = new Ciudad();
+                $ciudad->nombreCiudad = $request->nombreCiudad;
+                $ciudad->idProvincia = $request->idProvincia;
+                $ciudad->save();
+                return response()->json([
+                    'status' => true,
+                ]);
+            } catch (\Exception $e) {
+                return response()->json(['error' => $e->getMessage()]);
+            }
+        } else {
+            return response()->json([
+                'error' => $validator->errors(),
+            ]);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function viewEditarCiudad($idCiudad)
     {
-        //
+        $ciudad = Ciudad::where('idCiudad', $idCiudad)->first();
+        $provincias = Provincia::get();
+        return view('ciudad.editarCiudad', compact('ciudad', 'provincias'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function editarCiudad(Request $request, $idCiudad)
     {
-        //
+        $ciudad = Ciudad::where('idCiudad', $idCiudad)->first();
+
+        $ciudad->nombreCiudad = $request->nombreCiudad;
+        $ciudad->idProvincia = $request->idProvincia;
+        $ciudad->save();
+        return response()->json([
+            'status' => true,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function eliminarCiudad($idCiudad)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        try {
+            $ciudad = Ciudad::where('idCiudad', $idCiudad)->first();
+            $ciudad->delete();
+            return response()->json([
+                'success' => 'ciudad eliminada exitosamente',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
     }
 }

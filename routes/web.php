@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\CategoriaControlador;
 use App\Http\Controllers\DireccionControlador;
 use App\Http\Controllers\ProvinciaControlador;
+use App\Http\Controllers\CiudadControlador;
 use App\Http\Controllers\ImagenControlador;
 use App\Http\Controllers\EmprendedorControlador;
 use Illuminate\Support\Facades\Route;
@@ -206,6 +207,34 @@ Route::delete('/provincia/eliminar/{idDireccion}', [
     ProvinciaControlador::class,
     'eliminarProvincia',
 ])->name('eliminarProvincia');
+
+//Ciudad
+
+Route::get('/ciudad', [CiudadControlador::class, 'ciudad'])->name('ciudad');
+
+Route::get('/ciudad/crear', [
+    CiudadControlador::class,
+    'viewCrearCiudad',
+])->name('viewCrearCiudad');
+
+Route::post('/ciudad/crear', [CiudadControlador::class, 'crearCiudad'])->name(
+    'crearCiudad'
+);
+
+Route::get('/ciudad/editar/{idCiudad}', [
+    CiudadControlador::class,
+    'viewEditarCiudad',
+])->name('viewEditarCiudad');
+
+Route::put('/ciudad/editar/{idCiudad}', [
+    CiudadControlador::class,
+    'editarCiudad',
+])->name('editarCiudad');
+
+Route::delete('/ciudad/eliminar/{idDireccion}', [
+    CiudadControlador::class,
+    'eliminarCiudad',
+])->name('eliminarCiudad');
 
 // Enviar correo
 Route::get('enviar', [
