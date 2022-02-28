@@ -68,6 +68,30 @@ input.error {
 .input-lh:focus ~ .label-holder span {
     color: #e9426d;
 }
+.lleno-input ~ label span {
+    color: #e9426d;
+}
+.lleno-input + label {
+    position: absolute;
+    top: 4px;
+    font-size: 12px;
+    padding-left: 12px;
+    color: #00a9e0;
+}
+.lleno-input {
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    padding-top: 18px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #50535a;
+    background-color: #fff !important;
+    background-clip: padding-box;
+    height: 48px;
+    border: solid 1px #50535a !important;
+}
 .spansito {
     color: #e9426d !important;
 }

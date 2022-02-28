@@ -5,7 +5,8 @@
         <div class="row">
             <div class="col-md-12">
                 <br><br><br>
-                <h5>Crea una Dirección</h5>
+                <h5><a href="{{ route('direccion') }}" class=""><i class="bi bi-arrow-left-circle"></i></a>
+                    Crea una Dirección</h5>
                 <br>
                 <div class="offset-md-2 col-md-8">
                     <form id="formCrearDireccion" method="POST">
@@ -14,6 +15,7 @@
                             <div class="col-12 my-2">
                                 <label for="idProvincia">Provincia <span class="spansito">*</span></label>
                                 <select class="form-control custom-select" name="idProvincia" id="provincias">
+                                    <option value="">Seleccione una provincia</option>
                                     @foreach ($provincias as $key => $value)
                                         <option value="{{ $value->idProvincia }}">
                                             {{ $value->nombreProvincia }}
@@ -28,23 +30,19 @@
                                 </select>
                             </div>
                             <div class="col-12">
-                                <label for="direccionDireccion" class="label-holder">Dirección</label>
-                                <input type="text" class="form-control input-lh" id="direccionDireccion"
-                                    name="direccionDireccion" placeholder="Ingrese una dirección">
+                                <label for="direccionDireccion" class="">Dirección</label>
+                                <input type="text" class="form-control" id="direccionDireccion" name="direccionDireccion"
+                                    placeholder="">
                             </div>
                             <div class="col-12">
-                                <label for="telefonoDireccion" class="col-sm-3 label-holder">Teléfono</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="telefonoDireccion"
-                                        name="telefonoDireccion" placeholder="Ingrese un número de teléfono">
-                                </div>
+                                <label for="telefonoDireccion" class="">Teléfono</label>
+                                <input type="text" class="form-control" id="telefonoDireccion" name="telefonoDireccion"
+                                    placeholder="">
                             </div>
                             <div class="col-12">
-                                <label for="nombreDireccion" class="col-sm-3 label-holder">Nombre</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="nombreDireccion" name="nombreDireccion"
-                                        placeholder="Ej: Sucursal 1">
-                                </div>
+                                <label for="nombreDireccion" class="">Nombre</label>
+                                <input type="text" class="form-control" id="nombreDireccion" name="nombreDireccion"
+                                    placeholder="">
                             </div>
                             <center><button class="btn btn-primary" type="submit" id="formCrearDireccion"><i
                                         class="bi bi-box-arrow-in-right"></i> Guardar</button></center>

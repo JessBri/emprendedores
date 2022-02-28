@@ -45,7 +45,7 @@ class DireccionControlador extends Controller
                 $direccion->direccionDireccion = $request->direccionDireccion;
                 $direccion->telefonoDireccion = $request->telefonoDireccion;
                 $direccion->idCiudad = $request->idCiudad;
-                $direccion->idEmprendedor = 1;
+                $direccion->idEmprendedor = 2;
                 $direccion->save();
                 return response()->json([
                     'status' => true,
@@ -62,7 +62,39 @@ class DireccionControlador extends Controller
 
     public function viewEditarDireccion($idDireccion)
     {
-        $direcciones = Direccion::where('idDireccion', $idDireccion)->first();
-        return view('direccion.editarDireccion', compact('direcciones'));
+        $direccion = Direccion::where('idDireccion', $idDireccion)->first();
+        $provincias = Provincia::get();
+        return view(
+            'direccion.editarDireccion',
+            compact('direccion', 'provincias')
+        );
+    }
+
+    public function editarDireccion(Request $request, $idDireccion)
+    {
+        $direccion = Direccion::where('idDireccion', $idDireccion)->first();
+
+        $direccion->nombreDireccion = $request->nombreDireccion;
+        $direccion->direccionDireccion = $request->direccionDireccion;
+        $direccion->telefonoDireccion = $request->telefonoDireccion;
+        $direccion->idCiudad = $request->idCiudad;
+        $direccion->idEmprendedor = 2;
+        $direccion->save();
+        return response()->json([
+            'status' => true,
+        ]);
+    }
+
+    public function eliminarDireccion($idDireccion)
+    {
+        try {
+            $direccion = Direccion::where('idDireccion', $idDireccion)->first();
+            $direccion->delete();
+            return response()->json([
+                'success' => 'direccion eliminado exitosamente',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
     }
 }

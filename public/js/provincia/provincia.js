@@ -6,14 +6,14 @@ $(document).ready(function () {
         }
     });
 
-    $('.borrarDireccion').click(function (e) {
+    $('.borrarProvincia').click(function (e) {
         e.preventDefault();
 
-        var idDireccion = $(this).find(".idDireccion").text();
-        var nombreDireccion = $(this).find(".nombreDireccion").text();
+        var idProvincia = $(this).find(".idProvincia").text();
+        var nombreProvincia = $(this).find(".nombreProvincia").text();
         swal({
             title: "Confirmación de eliminación",
-            text: "Esta seguro de eliminar la direccion : " + nombreDireccion + "?",
+            text: "Esta seguro de eliminar la provincia : " + nombreProvincia + "?",
             icon: "warning",
             buttons: [
                 'Cancelar',
@@ -23,25 +23,25 @@ $(document).ready(function () {
         }).then(function (isConfirm) {
             if (isConfirm) {
                 $.ajax({
-                    url: '/direccion/eliminar/' + idDireccion,
+                    url: '/provincia/eliminar/' + idProvincia,
                     type: 'DELETE',
                     dataType: 'JSON',
                     //data: data,
                     success: function (data) {
                         if (data.success) {
                             swal({
-                                title: "Direccion eliminado",
-                                text: "La direccion " + $(this).find(".nombreCategoria").text() + "fue eliminada exitosamente!",
+                                title: "Provincia eliminada",
+                                text: "La provincia " + $(this).find(".nombreProvincia").text() + "fue eliminada exitosamente!",
                                 icon: "success",
                                 type: "success"
                             }).then(function () {
-                                window.location.href = "/direccion";
+                                window.location.href = "/provincia";
                             }
                             );
                         }
                         if (data.error) {
                             swal({
-                                title: "Error al eliminar el periodo",
+                                title: "Error al eliminar la provincia",
                                 text: data.error,
                                 icon: "error",
                                 type: "error"

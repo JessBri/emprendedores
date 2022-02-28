@@ -5,6 +5,7 @@ $(document).ready(function () {
         }
     });
 
+
     $('#provincias').on('change', function () {
         console.log(this.value);
         $("#ciudades").empty();
@@ -44,7 +45,7 @@ $(document).ready(function () {
                         icon: "success",
                         type: "success"
                     }).then(function () {
-                        window.location.href = "/categoria";
+                        window.location.href = "/direccion";
                     }
                     );
                 }

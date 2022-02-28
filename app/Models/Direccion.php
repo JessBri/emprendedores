@@ -10,6 +10,13 @@ class Direccion extends Model
 {
     use HasFactory;
 
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'idDireccion';
+
     public function ciudades()
     {
         return $this->belongsTo(Ciudad::class, 'idCiudad');

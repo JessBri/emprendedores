@@ -2,83 +2,74 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Provincia;
 use Illuminate\Http\Request;
+use Validator;
 
 class ProvinciaControlador extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function provincia(Request $request)
     {
-        //
+        $provincias = Provincia::all();
+        return view('provincia.provincia', compact('provincias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function viewCrearProvincia(Request $request)
     {
-        //
+        return view('provincia.crearProvincia');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function crearProvincia(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nombreProvincia' => 'required',
+        ]);
+
+        if ($validator->passes()) {
+            try {
+                $provincia = new Provincia();
+                $provincia->nombreProvincia = $request->nombreProvincia;
+                $provincia->save();
+                return response()->json([
+                    'status' => true,
+                ]);
+            } catch (\Exception $e) {
+                return response()->json(['error' => $e->getMessage()]);
+            }
+        } else {
+            return response()->json([
+                'error' => $validator->errors(),
+            ]);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function viewEditarProvincia($idProvincia)
     {
-        //
+        $provincia = Provincia::where('idProvincia', $idProvincia)->first();
+        return view('provincia.editarProvincia', compact('provincia'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function editarProvincia(Request $request, $idProvincia)
     {
-        //
+        $provincia = Provincia::where('idProvincia', $idProvincia)->first();
+
+        $provincia->nombreProvincia = $request->nombreProvincia;
+        $provincia->save();
+        return response()->json([
+            'status' => true,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function eliminarProvincia($idProvincia)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        try {
+            $provincia = Provincia::where('idProvincia', $idProvincia)->first();
+            $provincia->delete();
+            return response()->json([
+                'success' => 'provincia eliminado exitosamente',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
     }
 }

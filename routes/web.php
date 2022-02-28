@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CategoriaControlador;
 use App\Http\Controllers\DireccionControlador;
+use App\Http\Controllers\ProvinciaControlador;
 use App\Http\Controllers\ImagenControlador;
 use App\Http\Controllers\EmprendedorControlador;
 use Illuminate\Support\Facades\Route;
@@ -27,21 +28,34 @@ Route::get('/', [Controller::class, 'index'])->name('index');
 
 Route::get('/login', [Controller::class, 'login'])->name('iniciaSesion');
 
-Route::post('/login', [Controller::class, 'logueaSistema'])->name('logueaSistema');
+Route::post('/login', [Controller::class, 'logueaSistema'])->name(
+    'logueaSistema'
+);
 
 Route::get('/login/validar', [Controller::class, 'validaLogin'])->name(
     'validaLogin'
 );
 
-Route::get('/cerrarsesion',[Controller::class, 'cerrarSesion'])->name('cerrarSesion');
+Route::get('/cerrarsesion', [Controller::class, 'cerrarSesion'])->name(
+    'cerrarSesion'
+);
 
 //Recuperacion
 
-Route::post('/recuperaContrasena', [Controller::class, 'recuperaContrasena'])->name('recuperaContrasena');
+Route::post('/recuperaContrasena', [
+    Controller::class,
+    'recuperaContrasena',
+])->name('recuperaContrasena');
 
-Route::get('/password/{codigo}', [Controller::class, 'restauraContrasena'])->name('restauraContrasena');
+Route::get('/password/{codigo}', [
+    Controller::class,
+    'restauraContrasena',
+])->name('restauraContrasena');
 
-Route::post('/password/{codigo}', [Controller::class, 'cambiaNuevaContrasena'])->name('cambiaNuevaContrasena');
+Route::post('/password/{codigo}', [
+    Controller::class,
+    'cambiaNuevaContrasena',
+])->name('cambiaNuevaContrasena');
 
 //Imagen
 
@@ -74,9 +88,6 @@ Route::get('/emprendedor/{codigo}', [
     EmprendedorControlador::class,
     'confirmaEmprendedor',
 ])->name('confirmaEmprendedor');
-
-
-
 
 //Categoria
 
@@ -135,6 +146,47 @@ Route::get('/direccion/editar/{idDireccion}', [
     'viewEditarDireccion',
 ])->name('viewEditarDireccion');
 
+Route::put('/direccion/editar/{idDireccion}', [
+    DireccionControlador::class,
+    'editarDireccion',
+])->name('editarDireccion');
+
+Route::delete('/direccion/eliminar/{idDireccion}', [
+    DireccionControlador::class,
+    'eliminarDireccion',
+])->name('eliminarDireccion');
+
+//Provincia
+
+Route::get('/provincia', [ProvinciaControlador::class, 'provincia'])->name(
+    'provincia'
+);
+
+Route::get('/provincia/crear', [
+    ProvinciaControlador::class,
+    'viewCrearProvincia',
+])->name('viewCrearProvincia');
+
+Route::post('/provincia/crear', [
+    ProvinciaControlador::class,
+    'crearProvincia',
+])->name('crearProvincia');
+
+Route::get('/provincia/editar/{idProvincia}', [
+    ProvinciaControlador::class,
+    'viewEditarProvincia',
+])->name('viewEditarProvincia');
+
+Route::put('/provincia/editar/{idProvincia}', [
+    ProvinciaControlador::class,
+    'editarProvincia',
+])->name('editarProvincia');
+
+Route::delete('/provincia/eliminar/{idDireccion}', [
+    ProvinciaControlador::class,
+    'eliminarProvincia',
+])->name('eliminarProvincia');
+
 // Enviar correo
 Route::get('enviar', [
     'as' => 'enviar',
@@ -158,4 +210,3 @@ Route::get('enviar', [
         return 'Se envío el email';
     },
 ]);
-
