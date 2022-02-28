@@ -89,6 +89,26 @@ Route::get('/emprendedor/{codigo}', [
     'confirmaEmprendedor',
 ])->name('confirmaEmprendedor');
 
+Route::get('/emprendedor', [
+    EmprendedorControlador::class,
+    'perfilEmprendedor',
+])->name('perfilEmprendedor');
+
+Route::post('/emprendedor', [
+    EmprendedorControlador::class,
+    'editaEmprendedor',
+])->name('editaEmprendedor');
+
+Route::get('/cambiaContrasena', [
+    EmprendedorControlador::class,
+    'passwordEmprendedor',
+])->name('passwordEmprendedor');
+
+Route::post('/cambiaContrasena', [
+    EmprendedorControlador::class,
+    'editaPasswordEmprendedor',
+])->name('editaPasswordEmprendedor');
+
 //Categoria
 
 Route::get('/categoria', [CategoriaControlador::class, 'categoria'])->name(

@@ -22,6 +22,7 @@ class CreateEmprendedorsTable extends Migration
             $table->boolean('estadoEmprendedor');
             $table->string('razonSocialEmprendedor')->nullable();
             $table->string('contrasenaEmprendedor');
+            $table->string('tipoEmprendedor');
             $table->string('codigoEmprendedor')->nullable();
             $table->string('paginaWebEmprendedor')->nullable();
             $table->timestamps();
