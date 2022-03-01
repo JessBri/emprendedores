@@ -11,14 +11,22 @@ class CiudadControlador extends Controller
 {
     public function ciudad(Request $request)
     {
-        $ciudades = Ciudad::all();
-        return view('ciudad.ciudad', compact('ciudades'));
+        if (session()->has('usuarioConectado')) {
+            $ciudades = Ciudad::all();
+            return view('ciudad.ciudad', compact('ciudades'));
+        } else {
+            abort(404);
+        }
     }
 
     public function viewCrearCiudad(Request $request)
     {
-        $provincias = Provincia::get();
-        return view('ciudad.crearCiudad', compact('provincias'));
+        if (session()->has('usuarioConectado')) {
+            $provincias = Provincia::get();
+            return view('ciudad.crearCiudad', compact('provincias'));
+        } else {
+            abort(404);
+        }
     }
 
     public function crearCiudad(Request $request)
@@ -48,9 +56,13 @@ class CiudadControlador extends Controller
 
     public function viewEditarCiudad($idCiudad)
     {
-        $ciudad = Ciudad::where('idCiudad', $idCiudad)->first();
-        $provincias = Provincia::get();
-        return view('ciudad.editarCiudad', compact('ciudad', 'provincias'));
+        if (session()->has('usuarioConectado')) {
+            $ciudad = Ciudad::where('idCiudad', $idCiudad)->first();
+            $provincias = Provincia::get();
+            return view('ciudad.editarCiudad', compact('ciudad', 'provincias'));
+        } else {
+            abort(404);
+        }
     }
 
     public function editarCiudad(Request $request, $idCiudad)

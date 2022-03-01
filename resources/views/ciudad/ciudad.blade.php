@@ -5,11 +5,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <br><br><br>
-                <h5>Lista de Ciudades</h5>
-                <br>
+                <h4 class="text-center my-4">Lista de Ciudades</h4>
+            </div>
+            <div class="col-md-12">
                 <a href="{{ route('viewCrearCiudad') }}" class="mb-4 float-right pr-5"><i class="bi bi-plus-circle"></i>
-                    Nueva</a>
+                    Nueva ciudad</a>
             </div>
             <div class="col-12">
                 <div style="display: none">{{ $cont = 0 }}</div>
@@ -20,6 +20,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Provincia</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>

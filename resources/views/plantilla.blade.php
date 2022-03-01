@@ -57,8 +57,10 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('categoria') }}"><i
                                             class="bi bi-pencil-fill"></i> Categorias</a>
-                                    <a class="dropdown-item" href="#"><i class="bi bi-pencil-fill"></i> Provincias</a>
-                                    <a class="dropdown-item" href="#"><i class="bi bi-pencil-fill"></i> Ciudades</a>
+                                    <a class="dropdown-item" href="{{ route('provincia') }}"><i
+                                            class="bi bi-pencil-fill"></i> Provincias</a>
+                                    <a class="dropdown-item" href="{{ route('ciudad') }}"><i
+                                            class="bi bi-pencil-fill"></i> Ciudades</a>
                                 </div>
                             </li>
                         @endif

@@ -5,11 +5,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <br><br><br>
-                <h5>Direcciones !!!!!!</h5>
-                <br>
+                <h4 class="text-center my-4">Lista de direcciones</h4>
+            </div>
+            <div class="col-md-12">
                 <a href="{{ route('viewCrearDireccion') }}" class="mb-4 float-right pr-5"><i class="bi bi-plus-circle"></i>
-                    Nueva</a>
+                    Nueva dirección</a>
             </div>
             <div class="col-12">
                 <div style="display: none">{{ $cont = 0 }}</div>
@@ -50,6 +50,7 @@
                                 <th scope="col">Teléfono</th>
                                 <th scope="col">Ciudad</th>
                                 <th scope="col">Provincia</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>

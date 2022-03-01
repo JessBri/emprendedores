@@ -12,14 +12,22 @@ class DireccionControlador extends Controller
 {
     public function direccion(Request $request)
     {
-        $direcciones = Direccion::all();
-        return view('direccion.direccion', compact('direcciones'));
+        if (session()->has('usuarioConectado')) {
+            $direcciones = Direccion::all();
+            return view('direccion.direccion', compact('direcciones'));
+        } else {
+            abort(404);
+        }
     }
 
     public function viewCrearDireccion(Request $request)
     {
-        $provincias = Provincia::get();
-        return view('direccion.crearDireccion', compact('provincias'));
+        if (session()->has('usuarioConectado')) {
+            $provincias = Provincia::get();
+            return view('direccion.crearDireccion', compact('provincias'));
+        } else {
+            abort(404);
+        }
     }
 
     public function consultaCiudadesPorProvincia(Request $request, $idProvincia)
@@ -45,7 +53,9 @@ class DireccionControlador extends Controller
                 $direccion->direccionDireccion = $request->direccionDireccion;
                 $direccion->telefonoDireccion = $request->telefonoDireccion;
                 $direccion->idCiudad = $request->idCiudad;
-                $direccion->idEmprendedor = 2;
+                $direccion->idEmprendedor = session('usuarioConectado')[
+                    'idEmprendedor'
+                ];
                 $direccion->save();
                 return response()->json([
                     'status' => true,
@@ -62,12 +72,16 @@ class DireccionControlador extends Controller
 
     public function viewEditarDireccion($idDireccion)
     {
-        $direccion = Direccion::where('idDireccion', $idDireccion)->first();
-        $provincias = Provincia::get();
-        return view(
-            'direccion.editarDireccion',
-            compact('direccion', 'provincias')
-        );
+        if (session()->has('usuarioConectado')) {
+            $direccion = Direccion::where('idDireccion', $idDireccion)->first();
+            $provincias = Provincia::get();
+            return view(
+                'direccion.editarDireccion',
+                compact('direccion', 'provincias')
+            );
+        } else {
+            abort(404);
+        }
     }
 
     public function editarDireccion(Request $request, $idDireccion)

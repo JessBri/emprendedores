@@ -10,13 +10,21 @@ class CategoriaControlador extends Controller
 {
     public function categoria(Request $request)
     {
-        $categorias = Categoria::get();
-        return view('categoria.categoria', compact('categorias'));
+        if (session()->has('usuarioConectado')) {
+            $categorias = Categoria::get();
+            return view('categoria.categoria', compact('categorias'));
+        } else {
+            abort(404);
+        }
     }
 
     public function crearCategoria(Request $request)
     {
-        return view('categoria.crearCategoria');
+        if (session()->has('usuarioConectado')) {
+            return view('categoria.crearCategoria');
+        } else {
+            abort(404);
+        }
     }
 
     //Para validar el registro nuevo lugar
@@ -46,8 +54,12 @@ class CategoriaControlador extends Controller
 
     public function viewEditarCategoria($idCategoria)
     {
-        $categoria = Categoria::where('idCategoria', $idCategoria)->first();
-        return view('categoria.editarCategoria', compact('categoria'));
+        if (session()->has('usuarioConectado')) {
+            $categoria = Categoria::where('idCategoria', $idCategoria)->first();
+            return view('categoria.editarCategoria', compact('categoria'));
+        } else {
+            abort(404);
+        }
     }
 
     public function editarCategoria(Request $request, $idCategoria)

@@ -10,13 +10,21 @@ class ProvinciaControlador extends Controller
 {
     public function provincia(Request $request)
     {
-        $provincias = Provincia::all();
-        return view('provincia.provincia', compact('provincias'));
+        if (session()->has('usuarioConectado')) {
+            $provincias = Provincia::all();
+            return view('provincia.provincia', compact('provincias'));
+        } else {
+            abort(404);
+        }
     }
 
     public function viewCrearProvincia(Request $request)
     {
-        return view('provincia.crearProvincia');
+        if (session()->has('usuarioConectado')) {
+            return view('provincia.crearProvincia');
+        } else {
+            abort(404);
+        }
     }
 
     public function crearProvincia(Request $request)
@@ -45,8 +53,12 @@ class ProvinciaControlador extends Controller
 
     public function viewEditarProvincia($idProvincia)
     {
-        $provincia = Provincia::where('idProvincia', $idProvincia)->first();
-        return view('provincia.editarProvincia', compact('provincia'));
+        if (session()->has('usuarioConectado')) {
+            $provincia = Provincia::where('idProvincia', $idProvincia)->first();
+            return view('provincia.editarProvincia', compact('provincia'));
+        } else {
+            abort(404);
+        }
     }
 
     public function editarProvincia(Request $request, $idProvincia)
