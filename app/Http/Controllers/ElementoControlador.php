@@ -40,8 +40,15 @@ class ElementoControlador extends Controller
     {
         if (session()->has('usuarioConectado')) {
 
-            $fInicio = Carbon::parse($request->fechaInicioFecha);
-            $fFin = Carbon::parse($request->fechaFinFecha);
+            if($request->fechaInicioFecha != "" || $request->fechaFinFecha != "" ){
+                $fInicio = Carbon::parse($request->fechaInicioFecha);
+                $fInicio->format('Y/m/d');
+                $fFin = Carbon::parse($request->fechaFinFecha);
+                $fFin->format('Y/m/d');
+            }else{
+                $fInicio = null;
+                $fFin = null;
+            }
 
 
             Elemento::create([
@@ -52,8 +59,8 @@ class ElementoControlador extends Controller
                 'idCategoria' => $request->idCategoria,
                 'idEmprendedor' => session('usuarioConectado')['idEmprendedor'],
                 'tipoElemento' => $request->tipoElemento,
-                'fechaInicioElemento' => $fInicio->format('Y/m/d'),
-                'fechaFinElemento' => $fFin->format('Y/m/d')
+                'fechaInicioElemento' => $fInicio,
+                'fechaFinElemento' => $fFin
             ]);
 
             return back()->with('success', 'El elemento fue registrado exitosamente.');
@@ -84,16 +91,24 @@ class ElementoControlador extends Controller
         $elemento = Elemento::where('idElemento', $idElemento)->first();
         if ($elemento) {
 
-            $fInicio = Carbon::parse($request->fechaInicioFecha);
-            $fFin = Carbon::parse($request->fechaFinFecha);
+            if($request->fechaInicioFecha != "" || $request->fechaFinFecha != "" ){
+                $fInicio = Carbon::parse($request->fechaInicioFecha);
+                $fInicio->format('Y/m/d');
+                $fFin = Carbon::parse($request->fechaFinFecha);
+                $fFin->format('Y/m/d');
+            }else{
+                $fInicio = null;
+                $fFin = null;
+            }
+
 
             $elemento->nombreElemento = $request->nombreElemento;
             $elemento->descripcionElemento = $request->descripcionElemento;
             $elemento->precioElemento = $request->precioElemento;
             $elemento->estadoElemento = $request->estadoElemento;
             $elemento->tipoElemento = $request->tipoElemento;
-            $elemento->fechaInicioElemento = $fInicio->format('Y/m/d');
-            $elemento->fechaFinElemento = $fFin->format('Y/m/d');
+            $elemento->fechaInicioElemento = $fInicio;
+            $elemento->fechaFinElemento = $fFin;
 
             $elemento->save();
 

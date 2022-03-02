@@ -49,7 +49,7 @@
                         <div class="col-12 my-2">
                             <label for="razonSocialEmprendedor">Razón Social</label>
                             <input type="text" id="razonSocialEmprendedor" name="razonSocialEmprendedor"
-                                placeholder="Ingrese el apellido del emprendedor" class="form-control"
+                                placeholder="Ingrese la razón social del emprendedor" class="form-control"
                                 value="{{ $emprendedor->razonSocialEmprendedor }}">
                         </div>
                         <div class="col-12 my-2">

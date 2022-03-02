@@ -40,14 +40,18 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     @if (session('usuarioConectado'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('elemento') }}"><i class="bi bi-easel-fill"></i> Mis Articulos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('direccion') }}"><i class="bi bi-signpost-2"></i>
-                                Mis Direcciones</a>
-                        </li>
                         @if (session('usuarioConectado')['tipoEmprendedor'] == 'emprendedor')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('elemento') }}"><i
+                                        class="bi bi-easel-fill"></i> Mis Articulos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('direccion') }}"><i
+                                        class="bi bi-signpost-2"></i>
+                                    Mis Direcciones</a>
+                            </li>
+                        @endif
+                        @if (session('usuarioConectado')['tipoEmprendedor'] == 'administrador')
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

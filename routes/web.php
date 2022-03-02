@@ -26,6 +26,8 @@ use Illuminate\Support\Str;
 
 Route::get('/', [Controller::class, 'index'])->name('index');
 
+Route::get('/detalle/{idActiculo}', [Controller::class, 'detalleElemento'])->name('detalleElemento');
+
 //Login
 
 Route::get('/login', [Controller::class, 'login'])->name('iniciaSesion');
@@ -62,10 +64,12 @@ Route::post('/password/{codigo}', [
 //Imagen
 
 Route::get('/imagen', [ImagenControlador::class, 'imagen'])->name('imagen');
+
 Route::get('/imagen/{elemento}', [
     ImagenControlador::class,
     'imagenElemento',
 ])->name('imagenElemento');
+
 Route::post('/subeImagen', [ImagenControlador::class, 'subeImagen'])->name(
     'subeImagen'
 );

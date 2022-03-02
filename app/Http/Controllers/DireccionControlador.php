@@ -13,7 +13,9 @@ class DireccionControlador extends Controller
     public function direccion(Request $request)
     {
         if (session()->has('usuarioConectado')) {
-            $direcciones = Direccion::all();
+            $direcciones = Direccion::where('idEmprendedor', session('usuarioConectado')[
+                'idEmprendedor'
+            ])->get();
             return view('direccion.direccion', compact('direcciones'));
         } else {
             return view('login.login');
