@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Emprendedor;
+use App\Models\Elemento;
+use App\Models\Imagen;
+use App\Models\Direccion;
+use App\Models\Ciudad;
+use App\Models\Provincia;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -19,8 +24,60 @@ class Controller extends BaseController
 {
     public function index(Request $request){
 
-        return view('index.index');
+        //PARA CUANDO ESTA EL EMPRENDEDOR CONECTADO
+        if (session()->has('usuarioConectado')) {
 
+            $elementos = Elemento::where('idEmprendedor',session('usuarioConectado')[
+                'idEmprendedor'
+            ])->where('estadoElemento',1)->get();
+
+            foreach ($elementos as $elemento) {
+                $imagen = Imagen::where('idElemento',$elemento->idElemento)->first();
+                if($imagen){
+                    $elemento->imagenElemento = $imagen;
+                }else{
+                    $imagen = new Imagen();
+                    $imagen->urlImagen = "uploads/nodisponible.jpg";
+                    $elemento->imagenElemento = $imagen;
+                }
+            }
+
+            return view('index.index',compact('elementos'));
+
+        } else {
+            //PARA CUANDO NO ESTA EL EMPRENDEDOR CONECTADO
+            $elementos = Elemento::where('estadoElemento',1)->get();
+
+            foreach ($elementos as $elemento) {
+                $imagen = Imagen::where('idElemento',$elemento->idElemento)->first();
+                if($imagen){
+                    $elemento->imagenElemento = $imagen;
+                }else{
+                    $imagen = new Imagen();
+                    $imagen->urlImagen = "uploads/nodisponible.jpg";
+                    $elemento->imagenElemento = $imagen;
+                }
+            }
+
+            return view('index.index',compact('elementos'));
+        }
+
+    }
+
+    public function detalleElemento($idElemento){
+        $elemento = Elemento::where('idElemento',$idElemento)->first();
+        $imagenes = Imagen::where('idElemento',$idElemento)->get();
+        $direcciones = Direccion::where('idEmprendedor',$elemento->idEmprendedor)->get();
+        foreach ($direcciones as $direccion) {
+            $ciudad = Ciudad::where('idCiudad',$direccion->idCiudad)->first();
+            $provincia = Provincia::where('idProvincia',$ciudad->idProvincia)->first();
+            $direccion->idCiudad = $ciudad;
+            $direccion->idCiudad->idProvincia = $provincia;
+        }
+
+        if($elemento){
+            return view('imagen.detalleElemento', compact('elemento','imagenes','direcciones'));
+        }
     }
 
     public function login(Request $request){

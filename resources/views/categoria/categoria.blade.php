@@ -29,7 +29,7 @@
                                         <div class="btn-group">
                                             <a href="{{ route('viewEditarCategoria', $categoria->idCategoria) }}"
                                                 class="pr-2"><i class="bi bi-pencil-fill"></i></a>
-                                            <a class="borrarLugar">
+                                            <a href="#"class="borrarLugar">
                                                 <p class="idCategoria" hidden>{{ $categoria->idCategoria }}</p>
                                                 <p class="nombreCategoria" hidden>{{ $categoria->nombreCategoria }}</p>
                                                 <i class="bi bi-trash3-fill"></i>
