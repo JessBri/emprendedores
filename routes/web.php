@@ -7,6 +7,7 @@ use App\Http\Controllers\ProvinciaControlador;
 use App\Http\Controllers\CiudadControlador;
 use App\Http\Controllers\ImagenControlador;
 use App\Http\Controllers\EmprendedorControlador;
+use App\Http\Controllers\ElementoControlador;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Mail;
@@ -236,26 +237,29 @@ Route::delete('/ciudad/eliminar/{idDireccion}', [
     'eliminarCiudad',
 ])->name('eliminarCiudad');
 
-// Enviar correo
-Route::get('enviar', [
-    'as' => 'enviar',
-    function () {
-        //Str::random(10);
+//Elemento
 
-        $data = [
-            'link' => 'http://127.0.0.1:8000/password/' . Str::random(10),
-            'codigo' => Str::random(10),
-            'nombre' => 'Jessica Arciniega',
-        ];
-        Mail::send('emails.notificacion', $data, function ($message) {
-            $message->from(
-                'emprendedor.uisrael@gmail.com',
-                'Proyecto Emprendedores'
-            );
-            $message
-                ->to('luis.borja1722@gmail.com')
-                ->subject('Recuperación de contraseña');
-        });
-        return 'Se envío el email';
-    },
-]);
+Route::get('/elemento',[ElementoControlador::class, 'elemento'])->name('elemento');
+
+Route::get('/elemento/crear', [
+    ElementoControlador::class,
+    'viewCrearElemento',
+])->name('viewCrearElemento');
+
+Route::post('/elemento/crear',[ElementoControlador::class, 'nuevoElemento'])->name('nuevoElemento');
+
+
+Route::get('/elemento/editar/{idElemento}', [
+    ElementoControlador::class,
+    'viewEditarElemento',
+])->name('viewEditarElemento');
+
+Route::post('/elemento/editar/{idElemento}', [
+    ElementoControlador::class,
+    'editarElemento',
+])->name('editarElemento');
+
+Route::delete('/elemento/eliminar/{idElemento}', [
+    ElementoControlador::class,
+    'eliminarElemento',
+])->name('eliminarElemento');
