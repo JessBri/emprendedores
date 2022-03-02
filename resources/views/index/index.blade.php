@@ -3,7 +3,7 @@
 @section('contenidoPrincipal')
     <div class="container">
         <div class="row col-md-12">
-            @if (count($elementos) > 0 )
+            @if (count($elementos) > 0)
                 @foreach ($elementos as $elemento)
                     <div class="col-md-4 caja">
                         <div class="card">
@@ -24,14 +24,23 @@
                     </div>
                 @endforeach
             @endif
-            @if (count($elementos) == 0 && session('usuarioConectado')['tipoEmprendedor'] == 'emprendedor' )
+
+        </div>
+        @if (count($elementos) == 0 && session('usuarioConectado')['tipoEmprendedor'] == 'emprendedor')
             <div class="row justify-content-center mt-5">
                 <div class="col-md-8 text-center caja-vacia p-5">
                     <h4><i class="bi bi-clipboard-x"></i></h4>
                     <p>Aún no tienes artículos registrados</p>
+                    <a href="{{ route('viewCrearElemento') }}" class=""><i class="bi bi-plus-circle"></i>
+                        Nueva artículo</a>
                 </div>
             </div>
         @endif
-        </div>
+        @if (count($elementos) == 0 && !session('usuarioConectado'))
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8 text-center caja-vacia p-5">
+                </div>
+            </div>
+        @endif
     </div>
 @endsection

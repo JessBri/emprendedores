@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
     $.ajaxSetup({
         headers: {
@@ -6,14 +6,25 @@ $(document).ready(function(){
         }
     });
 
+    $('#tipoElemento').on('change', function () {
+        console.log(this.value);
+        if (this.value == "evento") {
+            $('#fini').removeClass('d-none');
+            $('#ffin').removeClass('d-none');
+        } else {
+            $('#fini').addClass('d-none');
+            $('#ffin').addClass('d-none');
+        }
+    });
+
 
     $("#fechaInicioFecha").datetimepicker({
         format: 'DD-MM-YYYY',
-        locale:  moment.locale('es', {
+        locale: moment.locale('es', {
             week: { dow: 1 }
         }),
-        minDate:new Date(new Date().getTime() - 24*60*60*1000),
-        showTodayButton:true,
+        minDate: new Date(new Date().getTime() - 24 * 60 * 60 * 1000),
+        showTodayButton: true,
         icons: {
             time: 'fas fa-clock',
             date: 'fas fa-calendar-week',
@@ -44,11 +55,11 @@ $(document).ready(function(){
 
     $("#fechaFinFecha").datetimepicker({
         format: 'DD-MM-YYYY',
-        locale:  moment.locale('es', {
+        locale: moment.locale('es', {
             week: { dow: 1 }
         }),
-        minDate:new Date(new Date().getTime() - 24*60*60*1000),
-        showTodayButton:true,
+        minDate: new Date(new Date().getTime() - 24 * 60 * 60 * 1000),
+        showTodayButton: true,
         icons: {
             time: 'fas fa-clock',
             date: 'fas fa-calendar-week',

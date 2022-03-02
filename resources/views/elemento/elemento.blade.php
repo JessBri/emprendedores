@@ -3,18 +3,17 @@
 @section('contenidoPrincipal')
 
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-12">
                 <h4 class="text-center my-4">Lista de artículos para {{ $emprendedor->nombreEmprendedor }}
                     {{ $emprendedor->apellidoEmprendedor }}</h4>
             </div>
-            <div class="col-md-12">
-                <a href="{{ route('viewCrearElemento') }}" class="mb-4 float-right pr-5"><i class="bi bi-plus-circle"></i>
-                    Nuevo artículo</a>
-            </div>
             <div class="col-12">
                 <div style="display: none">{{ $cont = 0 }}</div>
                 @if (count($elementos) > 0)
+                    <a href="{{ route('viewCrearElemento') }}" class="mb-4 float-right pr-5"><i
+                            class="bi bi-plus-circle"></i>
+                        Nuevo artículo</a>
                     <table class="table">
                         <thead>
                             <tr>
@@ -58,12 +57,16 @@
                         </tbody>
                     </table>
                 @endif
-                @if (count($elementos) == 0)
-                    <h5>
-                        <center>No existen articulos registrados</center>
-                    </h5>
-                @endif
+
             </div>
+            @if (count($elementos) == 0)
+                <div class="col-md-8 text-center caja-vacia p-5">
+                    <h4><i class="bi bi-clipboard-x"></i></h4>
+                    <p>Aún no tienes artículos registrados</p>
+                    <a href="{{ route('viewCrearElemento') }}" class=""><i class="bi bi-plus-circle"></i>
+                        Nueva artículo</a>
+                </div>
+            @endif
         </div>
     </div>
 
