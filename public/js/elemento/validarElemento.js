@@ -18,13 +18,7 @@ $(document).ready(function () {
             },
             tipoElemento: {
                 required: true,
-            },
-            fechaInicioFecha: {
-                required: true,
-            },
-            fechaFinFecha: {
-                required: true,
-            },
+            }
         },
         messages: {
             nombreElemento: {
@@ -44,21 +38,15 @@ $(document).ready(function () {
             },
             tipoElemento: {
                 required: "El campo tipo es requerido",
-            },
-            fechaInicioFecha: {
-                required: "El campo fecha inicio es requerido",
-            },
-            fechaFinFecha: {
-                required: "El campo fecha fin es requerido",
-            },
+            }
         }
     });
 
-    $("#precioElemento").on("keyup", function(){
+    $("#precioElemento").on("keyup", function () {
         var valid = /^\d{0,4}(\.\d{0,2})?$/.test(this.value),
             val = this.value;
 
-        if(!valid){
+        if (!valid) {
             this.value = val.substring(0, val.length - 1);
         }
     });

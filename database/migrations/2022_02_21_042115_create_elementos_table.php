@@ -20,12 +20,18 @@ class CreateElementosTable extends Migration
             $table->decimal('precioElemento', 10, 2);
             $table->boolean('estadoElemento');
             $table->string('tipoElemento');
-            $table->date('fechaInicioElemento');
-            $table->date('fechaFinElemento');
+            $table->date('fechaInicioElemento')->nullable();
+            $table->date('fechaFinElemento')->nullable();
             $table->unsignedBigInteger('idCategoria');
-            $table->foreign('idCategoria')->references('idCategoria')->on('categorias');
+            $table
+                ->foreign('idCategoria')
+                ->references('idCategoria')
+                ->on('categorias');
             $table->unsignedBigInteger('idEmprendedor');
-            $table->foreign('idEmprendedor')->references('idEmprendedor')->on('emprendedors');
+            $table
+                ->foreign('idEmprendedor')
+                ->references('idEmprendedor')
+                ->on('emprendedors');
             $table->timestamps();
         });
     }

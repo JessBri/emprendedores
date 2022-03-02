@@ -23,8 +23,6 @@
                                 <th scope="col">Descripción</th>
                                 <th scope="col">Precio</th>
                                 <th scope="col">Estado</th>
-                                <th scope="col">F.Inicio</th>
-                                <th scope="col">F.Fin</th>
                                 <th scope="col">Categoría</th>
                                 <th scope="col">Opción</th>
                             </tr>
@@ -37,14 +35,12 @@
                                     <td>{{ $elemento->descripcionElemento }}</td>
                                     <td>{{ $elemento->precioElemento }}</td>
                                     <td>
-                                        @if ( $elemento->estadoElemento  == 1)
+                                        @if ($elemento->estadoElemento == 1)
                                             Activo
                                         @else
                                             Inactivo
                                         @endif
                                     </td>
-                                    <td>{{ $elemento->fechaInicioElemento }}</td>
-                                    <td>{{ $elemento->fechaFinElemento }}</td>
                                     <td>{{ $elemento->categorias->nombreCategoria }}</td>
                                     <td>
                                         <a href="{{ route('imagenElemento', $elemento->idElemento) }}"
@@ -74,5 +70,5 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/elemento/lstElemento.js') }}"></script>
+    <script src="{{ asset('js/elemento/lstElemento.js') }}"></script>
 @endsection
