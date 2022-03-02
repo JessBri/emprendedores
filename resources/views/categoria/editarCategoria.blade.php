@@ -2,33 +2,35 @@
 
 
 @section('contenidoPrincipal')
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
                 <div id="idCategoria" style="display: none">{{ $categoria->idCategoria }}</div>
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <span><i class="fas fa-edit"></i> Editar Categoría</span>
-                </div>
-                <div class="card-body">
-                  <form id="formEditaCategoria" method="POST">
+                <h5><a href="{{ route('categoria') }}" class="float-left"><i class="bi bi-arrow-left-circle"></i></a>
+                </h5>
+                <h5 class="text-center">Editar categoría</h5>
+            </div>
+            <div class="col-md-8 caja p-5 mt-3 mb-5">
+                <form id="formEditaCategoria" method="POST">
                     @csrf
-                    <div class="form-group row">
-                        <label for="nombreCategoria" class="col-sm-2 col-form-label">Nombre</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria" placeholder="Ingrese un nombre de categoría" value="{{ $categoria->nombreCategoria }}">
+                    <div class="form-row">
+                        <div class="col-12 mb-2">
+                            <label for="nombreCategoria" class="">Nombre <span
+                                    class="spansito">*</span></label>
+                            <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria"
+                                placeholder="Ingrese un nombre de categoría" value="{{ $categoria->nombreCategoria }}">
+                        </div>
+                        <div class="col-12 mt-4">
+                            <center><button class="btn btn-primary w-75" type="submit"><i class="far fa-edit"></i>
+                                    Editar</button></center>
                         </div>
                     </div>
-                    <button class="btn btn-primary btn-block" type="submit"><i class="far fa-edit"></i> Editar</button>
-                  </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/categoria/editarCategoria.js') }}"></script>
+    <script src="{{ asset('js/categoria/editarCategoria.js') }}"></script>
 @endsection

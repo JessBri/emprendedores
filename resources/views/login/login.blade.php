@@ -2,51 +2,51 @@
 
 @section('contenidoPrincipal')
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
                 <br>
                 <center>
-                    <h5><i class="bi bi-door-open"></i> Inicia sesión en Emprendedores</h5>
+                    <h5>Inicia sesión</h5>
                 </center>
                 <br>
-                <div class="offset-md-2 col-md-8">
-                    <br>
-                    @if (session()->has('success'))
-                        <div class="alert alert-success">
-                            {{ session()->get('success') }}
-                        </div>
-                    @endif
-                    @if (session()->has('error'))
-                        <div class="alert alert-danger">
-                            {{ session()->get('error') }}
-                        </div>
-                    @endif
-                    <form id="formLogin" method="POST">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="correoEmprendedor" class="col-sm-3 col-form-label">Usuario</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="correoEmprendedor" name="correoEmprendedor"
-                                    placeholder="Ingrese su nombre de usuario">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="password" class="col-sm-3 col-form-label">Contraseña</label>
-                            <div class="col-sm-9">
-                                <div id="hff" style="display: none"></div>
-                                <input type="password" class="form-control" id="contrasenaEmprendedor"
-                                    name="contrasenaEmprendedor" placeholder="Ingrese su contraseña">
-                            </div>
-                        </div>
-                        <br>
-                        <center><button class="btn btn-primary btn-block" type="submit" id="submitFormLogin"><i
-                                    class="bi bi-box-arrow-in-right"></i> Iniciar Sesión</button></center>
-                    </form>
-                    <a href="#" data-toggle="modal" data-target="#recuperaCuenta">
-                        <p style="text-align:end">Olvidaste la contraseña</p>
-                    </a>
-                </div>
             </div>
+            <div class="col-md-8 caja mt-3 mb-5 px-5 py-4">
+                <br>
+                @if (session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                    </div>
+                @endif
+                @if (session()->has('error'))
+                    <div class="alert alert-danger">
+                        {{ session()->get('error') }}
+                    </div>
+                @endif
+                <form id="formLogin" method="POST">
+                    @csrf
+                    <div class="form-row">
+                        <div class="col-12 mb-2">
+                            <label for="correoEmprendedor">Usuario <span class="spansito">*</span></label>
+                            <input type="text" class="form-control" id="correoEmprendedor" name="correoEmprendedor"
+                                placeholder="">
+                        </div>
+                        <div class="col-12 my-2">
+                            <label for="password">Contraseña <span class="spansito">*</span></label>
+                            <div id="hff" style="display: none"></div>
+                            <input type="password" class="form-control" id="contrasenaEmprendedor"
+                                name="contrasenaEmprendedor" placeholder="">
+                        </div>
+                        <div class="col-12 mt-4">
+                            <center><button class="btn btn-primary btn-block" type="submit" id="submitFormLogin"><i
+                                        class="bi bi-box-arrow-in-right"></i> Iniciar Sesión</button></center>
+                        </div>
+                    </div>
+                </form>
+                <a href="#" class="mt-2" data-toggle="modal" data-target="#recuperaCuenta">
+                    <p class="mt-2" style="text-align:end">Olvidaste tu contraseña</p>
+                </a>
+            </div>
+
         </div>
     </div>
     <div class="modal fade" id="recuperaCuenta" tabindex="-1" role="dialog" aria-labelledby="myModal"
@@ -72,7 +72,8 @@
                                 </div>
                             </div>
                         </form>
-                        <center><button class="btn btn-primary btn-block" id="enviaCorreoRecuperacion"><i class="bi bi-envelope"></i> Enviar correo de recuperación</button></center>
+                        <center><button class="btn btn-primary btn-block" id="enviaCorreoRecuperacion"><i
+                                    class="bi bi-envelope"></i> Enviar correo de recuperación</button></center>
                     </div>
                 </div>
                 <div class="modal-footer">

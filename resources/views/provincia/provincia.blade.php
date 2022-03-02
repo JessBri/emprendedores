@@ -2,22 +2,22 @@
 
 @section('contenidoPrincipal')
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-12">
-                <br><br><br>
-                <h5>Lista de Provincias</h5>
-                <br>
-                <a href="{{ route('viewCrearProvincia') }}" class="mb-4 float-right pr-5"><i class="bi bi-plus-circle"></i>
-                    Nueva</a>
+                <h4 class="text-center my-4">Lista de Provincias</h4>
             </div>
-            <div class="col-10">
+            <div class="col-8">
                 <div style="display: none">{{ $cont = 0 }}</div>
                 @if (count($provincias) > 0)
+                    <a href="{{ route('viewCrearProvincia') }}" class="mb-4 float-right pr-5"><i
+                            class="bi bi-plus-circle"></i>
+                        Nueva</a>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,9 +40,15 @@
                     </table>
                 @endif
                 @if (count($provincias) == 0)
-                    <h5>
-                        <center>No existen provincias registradas</center>
-                    </h5>
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-10 text-center caja-vacia p-5">
+                            <h4><i class="bi bi-clipboard-x"></i></h4>
+                            <p>Aún no tienes provincias registradas</p>
+                            <a href="{{ route('viewCrearProvincia') }}" class=""><i
+                                    class="bi bi-plus-circle"></i>
+                                Nueva provincia</a>
+                        </div>
+                    </div>
                 @endif
             </div>
         </div>

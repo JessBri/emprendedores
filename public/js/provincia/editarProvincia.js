@@ -5,6 +5,19 @@ $(document).ready(function () {
         }
     });
 
+    $("#formEditaProvincia").validate({
+        rules: {
+            nombreProvincia: {
+                required: true,
+            }
+        },
+        messages: {
+            nombreProvincia: {
+                required: "Ingrese un nombre de provincia",
+            }
+        }
+    });
+
     var data;
     $('#formEditaProvincia').submit(function (e) {
         e.preventDefault();

@@ -2,11 +2,41 @@ body {
     padding-top: 70px;
 }
 
+.form-control {
+    height: 40px;
+    border-radius: 4px;
+    background-color: #f4f4f3;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+
+input:focus,
+textarea:focus {
+    border: 1px solid #019df4 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    background-color: white !important;
+}
+
+button,
+input {
+    overflow: visible;
+}
+button,
 input,
+optgroup,
+select,
 textarea {
-    background-color: #f4f4f3 !important;
-    border-radius: 4px !important;
-    border: none !important;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
 }
 
 .cursor-pointer {
@@ -22,7 +52,12 @@ label.error {
 }
 
 input.error {
-    border: 1px dashed red;
+    border: 1px solid red;
+    font-weight: 300;
+    color: red;
+}
+select.error {
+    border: 1px solid red;
     font-weight: 300;
     color: red;
 }
@@ -31,82 +66,64 @@ input.error {
     text-align: center;
 }
 
-.input-lh {
-    outline: none;
-    display: block;
-    width: 100%;
-    padding: 0.375rem 0.75rem;
-    padding-top: 18px;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #86888c;
-    background-color: #f4f4f3 !important;
-    background-clip: padding-box;
-    height: 48px;
-    border: none !important;
-}
-
-.label-holder {
-    color: #86888c;
-    position: absolute;
-    top: 10px;
-    padding-left: 14px;
-    transition: 0.5s ease;
-}
-.label-holder span {
-    color: #86888c;
-}
-.label-span-inactivo {
-    color: #86888c;
-}
-.input-lh:focus ~ .label-holder {
-    top: 4px;
-    font-size: 12px;
-    padding-left: 12px;
-    color: #00a9e0;
-}
-.input-lh:focus ~ .label-holder span {
-    color: #e9426d;
-}
-.lleno-input ~ label span {
-    color: #e9426d;
-}
-.lleno-input + label {
-    position: absolute;
-    top: 4px;
-    font-size: 12px;
-    padding-left: 12px;
-    color: #00a9e0;
-}
-.lleno-input {
-    outline: none;
-    display: block;
-    width: 100%;
-    padding: 0.375rem 0.75rem;
-    padding-top: 18px;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #50535a;
-    background-color: #fff !important;
-    background-clip: padding-box;
-    height: 48px;
-    border: solid 1px #50535a !important;
-}
 .spansito {
     color: #e9426d !important;
 }
 
 .custom-select {
-    color: #50535a;
-    background: #e9eae8 url("../img/down-arrow.svg") no-repeat right 0.75rem
+    color: #86888c;
+    background: #f5f5f5 url(../img/down-arrow.svg) no-repeat right 0.75rem
         center;
-    border: 1px solid #e9eae8;
+    background-size: 14px;
+    border: 1px solid #f5f5f5;
+}
+
+.custom-control-label::before,
+.custom-file-label,
+.custom-select {
+    transition: background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.custom-select {
+    display: inline-block;
+    width: 100%;
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+    background: #fff
+        url(
+            data:image/svg + xml;charset=utf8,
+            %3Csvgxmlns="http://www.w3.org/2000/svg"viewBox="0 0 4 5"%3E%3Cpathfill="%23343a40"d="M2 0L0 2h4zm0 5L0 3h4z"/%3E%3C/svg%3E
+        )
+        no-repeat right 0.75rem center;
+    background-size: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .custom-select:focus {
-    background: white url("../img/down-arrow.svg") no-repeat right 0.75rem
-        center;
+    background: white url(svg/down-arrow.svg) no-repeat right 0.75rem center;
+    background-size: 14px;
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none;
+    border-color: #80bdff;
+}
+
+.caja {
+    background-color: #ffffff;
+    -webkit-box-shadow: 0 2px 4px 0 rgb(80 83 90 / 30%);
+    box-shadow: 0 2px 4px 0 rgb(80 83 90 / 30%);
+    border-radius: 4px;
+    border: 1px solid #e9eae8;
+}
+
+.caja-vacia {
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: 2px dashed #d3d4d3;
 }

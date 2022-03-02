@@ -16,7 +16,7 @@ class DireccionControlador extends Controller
             $direcciones = Direccion::all();
             return view('direccion.direccion', compact('direcciones'));
         } else {
-            abort(404);
+            return view('login.login');
         }
     }
 
@@ -26,7 +26,7 @@ class DireccionControlador extends Controller
             $provincias = Provincia::get();
             return view('direccion.crearDireccion', compact('provincias'));
         } else {
-            abort(404);
+            return view('login.login');
         }
     }
 
@@ -80,7 +80,7 @@ class DireccionControlador extends Controller
                 compact('direccion', 'provincias')
             );
         } else {
-            abort(404);
+            return view('login.login');
         }
     }
 
@@ -92,7 +92,6 @@ class DireccionControlador extends Controller
         $direccion->direccionDireccion = $request->direccionDireccion;
         $direccion->telefonoDireccion = $request->telefonoDireccion;
         $direccion->idCiudad = $request->idCiudad;
-        $direccion->idEmprendedor = 2;
         $direccion->save();
         return response()->json([
             'status' => true,

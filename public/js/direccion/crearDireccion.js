@@ -5,7 +5,6 @@ $(document).ready(function () {
         }
     });
 
-
     $('#provincias').on('change', function () {
         console.log(this.value);
         $("#ciudades").empty();
@@ -25,7 +24,7 @@ $(document).ready(function () {
     });
 
     var data;
-    $('#formCrearDireccion').submit(function (e) {
+    $('#formDireccion').submit(function (e) {
         e.preventDefault();
         data = $(this).serializeArray();
 

@@ -3,17 +3,15 @@
 @section('contenidoPrincipal')
 
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-12">
                 <h4 class="text-center my-4">Lista de Ciudades</h4>
-            </div>
-            <div class="col-md-12">
-                <a href="{{ route('viewCrearCiudad') }}" class="mb-4 float-right pr-5"><i class="bi bi-plus-circle"></i>
-                    Nueva ciudad</a>
             </div>
             <div class="col-12">
                 <div style="display: none">{{ $cont = 0 }}</div>
                 @if (count($ciudades) > 0)
+                    <a href="{{ route('viewCrearCiudad') }}" class="mb-4 float-right pr-5"><i class="bi bi-plus-circle"></i>
+                        Nueva ciudad</a>
                     <table class="table">
                         <thead>
                             <tr>
@@ -46,9 +44,15 @@
                     </table>
                 @endif
                 @if (count($ciudades) == 0)
-                    <h5>
-                        <center>No existen ciudades registradas</center>
-                    </h5>
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-8 text-center caja-vacia p-5">
+                            <h4><i class="bi bi-clipboard-x"></i></h4>
+                            <p>Aún no tienes ciudades registradas</p>
+                            <a href="{{ route('viewCrearCiudad') }}" class=""><i
+                                    class="bi bi-plus-circle"></i>
+                                Nueva ciudad</a>
+                        </div>
+                    </div>
                 @endif
             </div>
         </div>

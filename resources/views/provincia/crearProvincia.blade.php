@@ -2,24 +2,30 @@
 
 @section('contenidoPrincipal')
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <br><br><br>
-                <h5>Crea una Provincia</h5>
-                <br>
-                <div class="offset-md-2 col-md-8">
-                    <form id="formCrearProvincia" method="POST">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="nombreProvincia" class="">Nombre de provincia</label>
-                            <input type="text" class="form-control" id="nombreProvincia" name="nombreProvincia"
-                                placeholder="Ingrese un nombre de provincia">
-                        </div>
-                        <center><button class="btn btn-primary" type="submit" id="submitFormCrearProvincia"><i
-                                    class="bi bi-box-arrow-in-right"></i> Guardar</button></center>
-                    </form>
-                </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h5><a href="{{ route('provincia') }}" class="float-left"><i class="bi bi-arrow-left-circle"></i></a>
+                </h5>
+                <h5 class="text-center">Crea una provincia</h5>
             </div>
+            <div class="col-md-8 caja p-5 mt-2 mb-5">
+                <form id="formCrearProvincia" method="POST">
+                    @csrf
+                    <div class="form-row">
+                        <div class="col-12 mb-2">
+                            <label for="nombreProvincia" class="">Nombre <span
+                                    class="spansito">*</span></label>
+                            <input type="text" class="form-control" id="nombreProvincia" name="nombreProvincia"
+                                placeholder="">
+                        </div>
+                        <div class="col-12 mt-4">
+                            <center><button class="btn btn-primary w-75" type="submit" id="submitFormCrearProvincia"><i
+                                        class="bi bi-box-arrow-in-right"></i> Guardar</button></center>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
 @endsection

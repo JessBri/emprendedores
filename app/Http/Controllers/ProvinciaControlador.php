@@ -14,7 +14,7 @@ class ProvinciaControlador extends Controller
             $provincias = Provincia::all();
             return view('provincia.provincia', compact('provincias'));
         } else {
-            abort(404);
+            return view('login.login');
         }
     }
 
@@ -23,7 +23,7 @@ class ProvinciaControlador extends Controller
         if (session()->has('usuarioConectado')) {
             return view('provincia.crearProvincia');
         } else {
-            abort(404);
+            return view('login.login');
         }
     }
 
@@ -57,7 +57,7 @@ class ProvinciaControlador extends Controller
             $provincia = Provincia::where('idProvincia', $idProvincia)->first();
             return view('provincia.editarProvincia', compact('provincia'));
         } else {
-            abort(404);
+            return view('login.login');
         }
     }
 

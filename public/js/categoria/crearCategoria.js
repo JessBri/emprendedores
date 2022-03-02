@@ -5,6 +5,19 @@ $(document).ready(function () {
         }
     });
 
+    $("#formCrearCategoria").validate({
+        rules: {
+            nombreCategoria: {
+                required: true,
+            }
+        },
+        messages: {
+            nombreCategoria: {
+                required: "Ingrese un nombre de categoría",
+            }
+        }
+    });
+
     var data;
     $('#formCrearCategoria').submit(function (e) {
         e.preventDefault();

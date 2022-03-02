@@ -13,7 +13,7 @@ $(document).ready(function () {
         var nombreCategoria = $(this).find(".nombreCategoria").text();
         swal({
             title: "Confirmación de eliminación",
-            text: "Esta seguro de eliminar el lugar : " + nombreCategoria + "?",
+            text: "Esta seguro de eliminar la categoría : " + nombreCategoria + "?",
             icon: "warning",
             buttons: [
                 'Cancelar',
@@ -30,8 +30,8 @@ $(document).ready(function () {
                     success: function (data) {
                         if (data.success) {
                             swal({
-                                title: "Lugar eliminado",
-                                text: "El lugar " + $(this).find(".nombreCategoria").text() + "fue eliminado exitosamente!",
+                                title: "Categoría eliminado",
+                                text: "La categoría " + $(this).find(".nombreCategoria").text() + "fue eliminada exitosamente!",
                                 icon: "success",
                                 type: "success"
                             }).then(function () {
@@ -41,7 +41,7 @@ $(document).ready(function () {
                         }
                         if (data.error) {
                             swal({
-                                title: "Error al eliminar el periodo",
+                                title: "Error al eliminar el categoría",
                                 text: data.error,
                                 icon: "error",
                                 type: "error"

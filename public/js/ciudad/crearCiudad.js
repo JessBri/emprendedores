@@ -5,6 +5,25 @@ $(document).ready(function () {
         }
     });
 
+    $("#formCrearCiudad").validate({
+        rules: {
+            idProvincia: {
+                required: true,
+            },
+            nombreCiudad: {
+                required: true,
+            }
+        },
+        messages: {
+            idProvincia: {
+                required: "Seleccione una provincia",
+            },
+            nombreCiudad: {
+                required: "Ingrese un nombre de ciudad",
+            }
+        }
+    });
+
     var data;
     $('#formCrearCiudad').submit(function (e) {
         e.preventDefault();

@@ -28,26 +28,26 @@ $(document).ready(function () {
         },
         messages: {
             identificacionEmprendedor: {
-                required: "El campo identificación es requerido",
+                required: "Ingrese una identificación",
                 minlength: jQuery.validator.format("Al menos {0} caracteres minimos!"),
                 number: "Se admiten solamente números!"
             },
             nombreEmprendedor: {
-                required: "El campo nombre es requerido"
+                required: "Ingrese un nombre"
             },
             apellidoEmprendedor: {
-                required: "El campo apellido es requerido"
+                required: "Ingrese un apellido"
             },
             correoEmprendedor: {
-                required: "El campo e-mail es requerido",
+                required: "Ingrese un e-mail ",
                 email: "Ingrese un correo electrónico válido"
             },
             contrasenaEmprendedor: {
-                required: "El campo contraseña es requerido",
+                required: "Ingrese una contraseña",
                 minlength: jQuery.validator.format("Al menos {0} caracteres minimos!"),
             },
             confContrasenaEmprendedor: {
-                required: "La confirmación del campo contraseña es requerido",
+                required: "Ingrese nuevamente su contraseña",
                 minlength: jQuery.validator.format("Al menos {0} caracteres minimos!"),
                 equalTo: "Las contraseñas no coinciden",
             },

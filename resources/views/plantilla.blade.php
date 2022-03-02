@@ -83,18 +83,15 @@
                         </li>
                     @endif
                     @if (!session('usuarioConectado'))
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bi bi-list"></i> Menú principal
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('iniciaSesion') }}"><i
-                                        class="bi bi-box-arrow-in-left"></i> Iniciar Sesión</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('creaEmprendedor') }}"><i
-                                        class="bi bi-person-plus-fill"></i> Registrarse</a>
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('iniciaSesion') }}"><i
+                                    class="bi bi-box-arrow-in-right"></i>
+                                Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('creaEmprendedor') }}"><i
+                                    class="bi bi-person-plus-fill"></i>
+                                Registrarme</a>
                         </li>
                     @endif
                 </ul>

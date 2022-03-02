@@ -14,7 +14,7 @@ class CategoriaControlador extends Controller
             $categorias = Categoria::get();
             return view('categoria.categoria', compact('categorias'));
         } else {
-            abort(404);
+            return view('login.login');
         }
     }
 
@@ -23,7 +23,7 @@ class CategoriaControlador extends Controller
         if (session()->has('usuarioConectado')) {
             return view('categoria.crearCategoria');
         } else {
-            abort(404);
+            return view('login.login');
         }
     }
 
@@ -58,7 +58,7 @@ class CategoriaControlador extends Controller
             $categoria = Categoria::where('idCategoria', $idCategoria)->first();
             return view('categoria.editarCategoria', compact('categoria'));
         } else {
-            abort(404);
+            return view('login.login');
         }
     }
 

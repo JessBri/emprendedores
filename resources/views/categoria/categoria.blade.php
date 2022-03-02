@@ -3,22 +3,21 @@
 @section('contenidoPrincipal')
 
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-12">
-                <h4 class="text-center my-4">Lista de categorias</h4>
+                <h4 class="text-center my-4">Lista de categorías</h4>
             </div>
-            <div class="col-md-12">
-                <a href="{{ route('crearCategoria') }}" class="mb-4 float-right pr-5"><i class="bi bi-plus-circle"></i>
-                    Nueva categoria</a>
-            </div>
-            <div class="col-12">
+            <div class="col-12 col-md-8">
                 <div style="display: none">{{ $cont = 0 }}</div>
                 @if (count($categorias) > 0)
+                    <a href="{{ route('crearCategoria') }}" class="mb-4 float-right pr-5"><i class="bi bi-plus-circle"></i>
+                        Nueva categoría</a>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,11 +28,11 @@
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{ route('viewEditarCategoria', $categoria->idCategoria) }}"
-                                                class="btn btn-warning">Editar</a>
-                                            <a class="btn btn-danger borrarLugar">
+                                                class="pr-2"><i class="bi bi-pencil-fill"></i></a>
+                                            <a class="borrarLugar">
                                                 <p class="idCategoria" hidden>{{ $categoria->idCategoria }}</p>
                                                 <p class="nombreCategoria" hidden>{{ $categoria->nombreCategoria }}</p>
-                                                Borrar
+                                                <i class="bi bi-trash3-fill"></i>
                                             </a>
                                         </div>
                                     </td>
@@ -43,9 +42,15 @@
                     </table>
                 @endif
                 @if (count($categorias) == 0)
-                    <h5>
-                        <center>No existen categorias registradas</center>
-                    </h5>
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-10 text-center caja-vacia p-5">
+                            <h4><i class="bi bi-clipboard-x"></i></h4>
+                            <p>Aún no tienes categorías registradas</p>
+                            <a href="{{ route('crearCategoria') }}" class=""><i
+                                    class="bi bi-plus-circle"></i>
+                                Nueva categoría</a>
+                        </div>
+                    </div>
                 @endif
             </div>
         </div>

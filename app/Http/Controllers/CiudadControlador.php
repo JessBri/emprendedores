@@ -15,7 +15,7 @@ class CiudadControlador extends Controller
             $ciudades = Ciudad::all();
             return view('ciudad.ciudad', compact('ciudades'));
         } else {
-            abort(404);
+            return view('login.login');
         }
     }
 
@@ -25,7 +25,7 @@ class CiudadControlador extends Controller
             $provincias = Provincia::get();
             return view('ciudad.crearCiudad', compact('provincias'));
         } else {
-            abort(404);
+            return view('login.login');
         }
     }
 
@@ -61,7 +61,7 @@ class CiudadControlador extends Controller
             $provincias = Provincia::get();
             return view('ciudad.editarCiudad', compact('ciudad', 'provincias'));
         } else {
-            abort(404);
+            return view('login.login');
         }
     }
 

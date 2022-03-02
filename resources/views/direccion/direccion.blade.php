@@ -3,45 +3,16 @@
 @section('contenidoPrincipal')
 
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-12">
                 <h4 class="text-center my-4">Lista de direcciones</h4>
-            </div>
-            <div class="col-md-12">
-                <a href="{{ route('viewCrearDireccion') }}" class="mb-4 float-right pr-5"><i class="bi bi-plus-circle"></i>
-                    Nueva dirección</a>
             </div>
             <div class="col-12">
                 <div style="display: none">{{ $cont = 0 }}</div>
                 @if (count($direcciones) > 0)
-                    {{-- <div class="container">
-                <div class="row">
-                    @foreach ($direcciones as $direccion)
-                    <div class="col-6">
-                        <div class="align-items-baseline  mx-auto pt-2 w-100" style="height: auto; min-height: 106px; border: 1px solid red;
-    border-radius: 4px;">
-                        <div class="d-flex mt-2 pl-3">
-                            <p>{{$direccion->nombreDireccion}}</p>
-                            <div class="position-absolute cursor-pointer" style="right:50px;">
-                                <i class="bi bi-pencil-fill"></i>
-                            </div>
-                            <div class="position-absolute cursor-pointer" style="right:25px;">
-                                <i class="bi bi-trash3-fill"></i>
-                            </div>
-                        </div>
-                        <p class="mb-0 font-size-13 text-azuloscuro-movistar text-left px-3">
-                            {{$direccion->direccionDireccion}}
-                        </p>
-                        <p class="mb-0 font-size-13 text-azuloscuro-movistar text-left px-3">
-                            {{$direccion->telefonoDireccion}}
-                        </p>
-                        <p class="font-size-13 text-gris-movistar-4 text-left px-3">{{ $direccion->ciudades->provincias->nombreProvincia }} -
-                            {{ $direccion->ciudades->nombreCiudad }}</p>
-                    </div>
-                    </div>
-                    @endforeach
-                </div>
-             </div> --}}
+                    <a href="{{ route('viewCrearDireccion') }}" class="mb-4 float-right pr-5"><i
+                            class="bi bi-plus-circle"></i>
+                        Nueva dirección</a>
                     <table class="table">
                         <thead>
                             <tr>
@@ -76,9 +47,15 @@
                     </table>
                 @endif
                 @if (count($direcciones) == 0)
-                    <h5>
-                        <center>No existen direcciones registradas</center>
-                    </h5>
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-8 text-center caja-vacia p-5">
+                            <h4><i class="bi bi-clipboard-x"></i></h4>
+                            <p>Aún no tienes direcciones registradas</p>
+                            <a href="{{ route('viewCrearDireccion') }}" class=""><i
+                                    class="bi bi-plus-circle"></i>
+                                Nueva dirección</a>
+                        </div>
+                    </div>
                 @endif
             </div>
         </div>

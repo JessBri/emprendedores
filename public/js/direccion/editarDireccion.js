@@ -16,7 +16,7 @@ $(document).ready(function () {
 
 
     var data;
-    $('#formEditarDireccion').submit(function (e) {
+    $('#formDireccion').submit(function (e) {
         e.preventDefault();
         data = $(this).serializeArray();
 
