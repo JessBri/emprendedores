@@ -41,7 +41,7 @@
                 <ul class="navbar-nav ml-auto">
                     @if (session('usuarioConectado'))
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="bi bi-easel-fill"></i> Mis Articulos</a>
+                            <a class="nav-link" href="{{ route('elemento') }}"><i class="bi bi-easel-fill"></i> Mis Articulos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('direccion') }}"><i class="bi bi-signpost-2"></i>
