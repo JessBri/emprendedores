@@ -19,12 +19,19 @@ class Elemento extends Model
         'idEmprendedor',
         'tipoElemento',
         'fechaInicioElemento',
-        'fechaFinElemento'
-       ];
+        'fechaFinElemento',
+    ];
     use HasFactory;
 
     public function categorias()
     {
         return $this->belongsTo(Categoria::class, 'idCategoria');
+    }
+
+    public function scopeNombres($query, $nombre)
+    {
+        if ($nombre) {
+            return $query->where('nombreElemento', 'like', "%$nombre%");
+        }
     }
 }

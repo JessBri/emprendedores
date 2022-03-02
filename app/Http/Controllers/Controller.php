@@ -25,110 +25,199 @@ class Controller extends BaseController
 {
     public function index(Request $request)
     {
-
         //PARA CUANDO ESTA EL EMPRENDEDOR CONECTADO
         if (session()->has('usuarioConectado')) {
+            $contProductos = Elemento::where(
+                'idEmprendedor',
+                session('usuarioConectado')['idEmprendedor']
+            )
+                ->where('estadoElemento', 1)
+                ->where('tipoElemento', 'producto')
+                ->get();
+            $contServicios = Elemento::where(
+                'idEmprendedor',
+                session('usuarioConectado')['idEmprendedor']
+            )
+                ->where('estadoElemento', 1)
+                ->where('tipoElemento', 'servicio')
+                ->get();
+            $contEventos = Elemento::where(
+                'idEmprendedor',
+                session('usuarioConectado')['idEmprendedor']
+            )
+                ->where('estadoElemento', 1)
+                ->where('tipoElemento', 'evento')
+                ->get();
 
-            $contProductos = Elemento::where('idEmprendedor', session('usuarioConectado')['idEmprendedor'])
+            $elementos = Elemento::where(
+                'idEmprendedor',
+                session('usuarioConectado')['idEmprendedor']
+            )
                 ->where('estadoElemento', 1)
-                ->where('tipoElemento', "producto")
                 ->get();
-            $contServicios = Elemento::where('idEmprendedor', session('usuarioConectado')['idEmprendedor'])
-                ->where('estadoElemento', 1)
-                ->where('tipoElemento', "servicio")
-                ->get();
-            $contEventos = Elemento::where('idEmprendedor', session('usuarioConectado')['idEmprendedor'])
-                ->where('estadoElemento', 1)
-                ->where('tipoElemento', "evento")
-                ->get();
-
-            $elementos = Elemento::where('idEmprendedor', session('usuarioConectado')['idEmprendedor'])->where('estadoElemento', 1)->get();
 
             foreach ($elementos as $elemento) {
-                $imagen = Imagen::where('idElemento', $elemento->idElemento)->first();
-                $categoria = Categoria::where('idCategoria', $elemento->idCategoria)->first();
+                $imagen = Imagen::where(
+                    'idElemento',
+                    $elemento->idElemento
+                )->first();
+                $categoria = Categoria::where(
+                    'idCategoria',
+                    $elemento->idCategoria
+                )->first();
                 $categoria->idCategoria = $categoria;
                 if ($imagen) {
                     $elemento->imagenElemento = $imagen;
                 } else {
                     $imagen = new Imagen();
-                    $imagen->urlImagen = "uploads/nodisponible.jpg";
+                    $imagen->urlImagen = 'uploads/nodisponible.jpg';
                     $elemento->imagenElemento = $imagen;
                 }
             }
 
-            return view('index.index', compact('elementos'));
+            return view(
+                'index.index',
+                compact(
+                    'elementos',
+                    'contEventos',
+                    'contServicios',
+                    'contProductos'
+                )
+            );
         } else {
             //PARA CUANDO NO ESTA EL EMPRENDEDOR CONECTADO
-            $elementos = Elemento::where('estadoElemento', 1)->get();
+
+            $nombre = $request->get('buscarpor');
+            if ($nombre) {
+                $elementos = Elemento::nombres($nombre)->get();
+            } else {
+                $elementos = Elemento::where('estadoElemento', 1)->get();
+            }
 
             $prod = Elemento::where('estadoElemento', 1)
-                ->where('tipoElemento', "producto")
+                ->where('tipoElemento', 'producto')
                 ->get();
 
             $contProductos = $prod->count();
 
-
-
             $serv = Elemento::where('estadoElemento', 1)
-                ->where('tipoElemento', "servicio")
+                ->where('tipoElemento', 'servicio')
                 ->get();
 
             $contServicios = $serv->count();
 
             $even = Elemento::where('estadoElemento', 1)
-                ->where('tipoElemento', "evento")
+                ->where('tipoElemento', 'evento')
                 ->get();
 
             $contEventos = $even->count();
 
             foreach ($elementos as $elemento) {
-                $imagen = Imagen::where('idElemento', $elemento->idElemento)->first();
-                $categoria = Categoria::where('idCategoria', $elemento->idCategoria)->first();
+                $imagen = Imagen::where(
+                    'idElemento',
+                    $elemento->idElemento
+                )->first();
+                $categoria = Categoria::where(
+                    'idCategoria',
+                    $elemento->idCategoria
+                )->first();
                 $elemento->idCategoria = $categoria;
                 if ($imagen) {
                     $elemento->imagenElemento = $imagen;
                 } else {
                     $imagen = new Imagen();
-                    $imagen->urlImagen = "uploads/nodisponible.jpg";
+                    $imagen->urlImagen = 'uploads/nodisponible.jpg';
                     $elemento->imagenElemento = $imagen;
                 }
             }
 
-            return view('index.index', compact('elementos', 'contEventos', 'contServicios', 'contProductos'));
+            return view(
+                'index.index',
+                compact(
+                    'elementos',
+                    'contEventos',
+                    'contServicios',
+                    'contProductos'
+                )
+            );
         }
     }
 
     public function detalleElemento($idElemento)
     {
         $elemento = Elemento::where('idElemento', $idElemento)->first();
+        $emprendedor = Emprendedor::where(
+            'idEmprendedor',
+            $elemento->idEmprendedor
+        )->first();
         $imagenes = Imagen::where('idElemento', $idElemento)->get();
-        $direcciones = Direccion::where('idEmprendedor', $elemento->idEmprendedor)->get();
+        $direcciones = Direccion::where(
+            'idEmprendedor',
+            $elemento->idEmprendedor
+        )->get();
         foreach ($direcciones as $direccion) {
             $ciudad = Ciudad::where('idCiudad', $direccion->idCiudad)->first();
-            $provincia = Provincia::where('idProvincia', $ciudad->idProvincia)->first();
+            $provincia = Provincia::where(
+                'idProvincia',
+                $ciudad->idProvincia
+            )->first();
             $direccion->idCiudad = $ciudad;
             $direccion->idCiudad->idProvincia = $provincia;
         }
 
         if ($elemento) {
-            return view('imagen.detalleElemento', compact('elemento', 'imagenes', 'direcciones'));
+            return view(
+                'imagen.detalleElemento',
+                compact('elemento', 'imagenes', 'direcciones', 'emprendedor')
+            );
         }
+    }
+
+    public function buscador(Request $request)
+    {
+        $elementos = Elemento::where(
+            'nombreElemento',
+            'like',
+            $request->texto . '%'
+        )
+            ->take(10)
+            ->get();
+        foreach ($elementos as $elemento) {
+            $imagen = Imagen::where(
+                'idElemento',
+                $elemento->idElemento
+            )->first();
+            $categoria = Categoria::where(
+                'idCategoria',
+                $elemento->idCategoria
+            )->first();
+            $elemento->idCategoria = $categoria;
+            if ($imagen) {
+                $elemento->imagenElemento = $imagen;
+            } else {
+                $imagen = new Imagen();
+                $imagen->urlImagen = 'uploads/nodisponible.jpg';
+                $elemento->imagenElemento = $imagen;
+            }
+        }
+        return view('index.index', compact('elementos'));
     }
 
     public function login(Request $request)
     {
-
         return view('login.login');
     }
 
-
-
     public function logueaSistema(Request $request)
     {
-
-        $emprendedor = Emprendedor::where('correoEmprendedor', $request->correoEmprendedor)
-            ->where('contrasenaEmprendedor', md5($request->contrasenaEmprendedor))
+        $emprendedor = Emprendedor::where(
+            'correoEmprendedor',
+            $request->correoEmprendedor
+        )
+            ->where(
+                'contrasenaEmprendedor',
+                md5($request->contrasenaEmprendedor)
+            )
             ->where('estadoEmprendedor', true)
             ->first();
 
@@ -142,12 +231,12 @@ class Controller extends BaseController
 
     public function recuperaContrasena(Request $request)
     {
-
-        $emprendedor = Emprendedor::where('correoEmprendedor', $request->correoRecuperacion)
-            ->first();
+        $emprendedor = Emprendedor::where(
+            'correoEmprendedor',
+            $request->correoRecuperacion
+        )->first();
 
         if ($emprendedor) {
-
             $codigoGenerado = Str::random(10);
             $correo = $emprendedor->correoEmprendedor;
 
@@ -156,12 +245,20 @@ class Controller extends BaseController
 
             $data = [
                 'link' => 'http://127.0.0.1:8000/password/' . $codigoGenerado,
-                'nombre' => $emprendedor->nombreEmprendedor . ' ' . $emprendedor->apellidoEmprendedor,
+                'nombre' =>
+                    $emprendedor->nombreEmprendedor .
+                    ' ' .
+                    $emprendedor->apellidoEmprendedor,
                 'correo' => $correo,
             ];
 
-            Mail::send('emails.notificacion', $data, function ($message) use ($correo) {
-                $message->from('emprendedor.uisrael@gmail.com', 'Proyecto Emprendedores');
+            Mail::send('emails.notificacion', $data, function ($message) use (
+                $correo
+            ) {
+                $message->from(
+                    'emprendedor.uisrael@gmail.com',
+                    'Proyecto Emprendedores'
+                );
                 $message->to($correo)->subject('Recuperación de contraseña');
             });
 
@@ -172,11 +269,12 @@ class Controller extends BaseController
         }
     }
 
-
     public function restauraContrasena(Request $request, $codigo)
     {
-
-        $emprendedor = Emprendedor::where('codigoEmprendedor', $codigo)->first();
+        $emprendedor = Emprendedor::where(
+            'codigoEmprendedor',
+            $codigo
+        )->first();
 
         if ($emprendedor) {
             return view('login.restaura', compact('emprendedor'));
@@ -187,13 +285,16 @@ class Controller extends BaseController
 
     public function cambiaNuevaContrasena(Request $request, $codigo)
     {
-
-        $emprendedor = Emprendedor::where('codigoEmprendedor', $codigo)->first();
+        $emprendedor = Emprendedor::where(
+            'codigoEmprendedor',
+            $codigo
+        )->first();
 
         if ($emprendedor) {
-
-            $emprendedor->codigoEmprendedor = "";
-            $emprendedor->contrasenaEmprendedor = md5($request->contrasenaEmprendedor);
+            $emprendedor->codigoEmprendedor = '';
+            $emprendedor->contrasenaEmprendedor = md5(
+                $request->contrasenaEmprendedor
+            );
             $emprendedor->estadoEmprendedor = true;
             $emprendedor->save();
             return response()->json(['success' => true]);

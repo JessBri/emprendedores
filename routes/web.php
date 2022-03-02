@@ -26,7 +26,12 @@ use Illuminate\Support\Str;
 
 Route::get('/', [Controller::class, 'index'])->name('index');
 
-Route::get('/detalle/{idActiculo}', [Controller::class, 'detalleElemento'])->name('detalleElemento');
+Route::get('/detalle/{idActiculo}', [
+    Controller::class,
+    'detalleElemento',
+])->name('detalleElemento');
+
+Route::get('/buscador', [Controller::class, 'buscador'])->name('buscador');
 
 //Login
 
@@ -243,15 +248,19 @@ Route::delete('/ciudad/eliminar/{idDireccion}', [
 
 //Elemento
 
-Route::get('/elemento',[ElementoControlador::class, 'elemento'])->name('elemento');
+Route::get('/elemento', [ElementoControlador::class, 'elemento'])->name(
+    'elemento'
+);
 
 Route::get('/elemento/crear', [
     ElementoControlador::class,
     'viewCrearElemento',
 ])->name('viewCrearElemento');
 
-Route::post('/elemento/crear',[ElementoControlador::class, 'nuevoElemento'])->name('nuevoElemento');
-
+Route::post('/elemento/crear', [
+    ElementoControlador::class,
+    'nuevoElemento',
+])->name('nuevoElemento');
 
 Route::get('/elemento/editar/{idElemento}', [
     ElementoControlador::class,

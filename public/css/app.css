@@ -138,3 +138,7 @@ select.error {
 .table th {
     border: 1px solid #d3d4d3;
 }
+
+.border-bottom {
+    border-bottom: 1px solid #d3d4d3;
+}

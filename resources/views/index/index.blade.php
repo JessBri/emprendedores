@@ -2,44 +2,33 @@
 
 @section('contenidoPrincipal')
     <div class="container">
-        <div class="row col-md-12">
-            <div class="btn-group btn-block" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-secondary">{{ $contProductos }} Producto(s)</button>
-                <button type="button" class="btn btn-secondary">{{ $contServicios }} Servicio(s)</button>
-                <button type="button" class="btn btn-secondary">{{ $contEventos }} Evento(s)</button>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 mt-4">
+                <form action="{{ route('index') }}" method="get" onsubmit="return showLoad()">
+
+                    <div class="input-group mb-3">
+                        <input name="buscarpor" class="form-control mr-sm-2" type="text" placeholder="Buscar por nombre"
+                            aria-label="Search">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i
+                                class="bi bi-search"></i></button>
+                    </div>
+                </form>
             </div>
         </div>
-        <br>
-        <div class="row col-md-12">
+        <div class="row">
             @if (count($elementos) > 0)
                 @foreach ($elementos as $elemento)
-                    <div class="col-md-4 caja">
-                        <div class="card">
-                            <img src="{{ $elemento->imagenElemento->urlImagen }}" class="card-img-top"
-                                alt="{{ $elemento->imagenElemento->nombreImagen }}" />
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $elemento->nombreElemento }}</h5>
-                                <p class="card-text">
-                                    {{ $elemento->descripcionElemento }}
-                                    <span><b>Categoría:</b> {{ $elemento->idCategoria->nombreCategoria }}</span>
-                                    <br>
-                                    <span><b>Tipo:</b>
-                                        @if ($elemento->tipoElemento == 'producto')
-                                            Evento
-                                        @elseif ($elemento->tipoElemento == 'servicio')
-                                            Servicio
-                                        @elseif ($elemento->tipoElemento == 'evento')
-                                            Evento
-                                        @endif
-                                    </span>
-                                </p>
-                                <p class="card-text">
-                                    <center>
-                                        <h4>$ {{ $elemento->precioElemento }}</h4>
-                                    </center>
-                                </p>
+                    <div class="col-md-6 px-4 mt-3">
+                        <div class="row caja px-3 py-3">
+                            <div class="col-7">
+                                <h5 class="card-title mt-3">{{ $elemento->nombreElemento }}</h5>
+                                <h4>$ {{ $elemento->precioElemento }}</h4>
                                 <a href="{{ route('detalleElemento', $elemento->idElemento) }}"
-                                    class="btn btn-primary btn-block"><i class="bi bi-bag-plus"></i> Ver más</a>
+                                    class="btn btn-primary btn-block mt-3"><i class="bi bi-bag-plus"></i> Ver más</a>
+                            </div>
+                            <div class="col-5">
+                                <img src="{{ $elemento->imagenElemento->urlImagen }}" class="card-img-top"
+                                    alt="{{ $elemento->imagenElemento->nombreImagen }}" />
                             </div>
                         </div>
                     </div>
