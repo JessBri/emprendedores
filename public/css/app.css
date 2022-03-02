@@ -127,3 +127,14 @@ select.error {
     border-radius: 4px;
     border: 2px dashed #d3d4d3;
 }
+
+.table {
+    border-radius: 4px;
+    -webkit-box-shadow: 0 2px 4px 0 rgb(80 83 90 / 30%);
+    box-shadow: 0 2px 4px 0 rgb(80 83 90 / 30%);
+}
+
+.table td,
+.table th {
+    border: 1px solid #d3d4d3;
+}
