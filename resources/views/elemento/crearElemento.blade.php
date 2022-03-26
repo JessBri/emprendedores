@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <h5><a href="{{ route('elemento') }}" class="float-left"><i class="bi bi-arrow-left-circle"></i></a>
                 </h5>
-                <h5 class="text-center">Crea una Artículo</h5>
+                <h5 class="text-center title">Crea una Artículo</h5>
             </div>
             <div class="col-12 col-md-8 caja px-5 py-4 mt-3 mb-5">
                 @if (session()->has('success'))
@@ -34,21 +34,20 @@
                             <textarea type="text" class="form-control" id="descripcionElemento" name="descripcionElemento"
                                 placeholder=""></textarea>
                         </div>
-                        <div class="col-12 my-2">
+                        <div class="col-6 my-2">
                             <label for="precioElemento" class="">Precio<span
                                     class="spansito">*</span></label>
                             <input type="text" class="form-control" id="precioElemento" name="precioElemento"
                                 placeholder="">
                         </div>
-                        <div class="col-12 my-2">
-                            <label for="estadoElemento">Estado <span class="spansito">*</span></label>
-                            <select class="form-control custom-select" name="estadoElemento" id="estadoElemento">
-                                <option value="">Establezca el estado ..</option>
-                                <option value="1">Activo</option>
-                                <option value="0">Inactivo</option>
-                            </select>
-                        </div>
                         <div class="col-6 my-2">
+                            <label for="cantidadElemento" class="">Cantidad<span
+                                    class="spansito">*</span></label>
+                            <input type="text" class="form-control" id="cantidadElemento" name="cantidadElemento"
+                                placeholder="">
+                        </div>
+
+                        <div class="col-12 my-2">
                             <label for="idCategoria">Categoría <span class="spansito">*</span></label>
                             <select class="form-control custom-select" name="idCategoria" id="idCategoria">
                                 <option value="">Seleccione una categoria</option>
@@ -57,6 +56,14 @@
                                         {{ $value->nombreCategoria }}
                                     </option>
                                 @endforeach
+                            </select>
+                        </div>
+                        <div class="col-6 my-2">
+                            <label for="estadoElemento">Estado <span class="spansito">*</span></label>
+                            <select class="form-control custom-select" name="estadoElemento" id="estadoElemento">
+                                <option value="">Establezca el estado ..</option>
+                                <option value="1">Activo</option>
+                                <option value="0">Inactivo</option>
                             </select>
                         </div>
                         <div class="col-6 my-2">

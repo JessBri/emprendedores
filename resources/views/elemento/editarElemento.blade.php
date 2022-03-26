@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <h5><a href="{{ route('elemento') }}" class="float-left"><i class="bi bi-arrow-left-circle"></i></a>
                 </h5>
-                <h5 class="text-center">Editar Artículo</h5>
+                <h5 class="text-center title">Editar Artículo</h5>
             </div>
             <div class="col-12 col-md-8 caja px-5 py-4 mt-3 mb-5">
                 @if (session()->has('success'))
@@ -34,11 +34,17 @@
                             <input type="text" class="form-control" id="descripcionElemento" name="descripcionElemento"
                                 placeholder="" value="{{ $elemento->descripcionElemento }}">
                         </div>
-                        <div class="col-12 my-2">
+                        <div class="col-6 my-2">
                             <label for="precioElemento" class="">Precio <span
                                     class="spansito">*</span></label>
                             <input type="text" class="form-control" id="precioElemento" name="precioElemento"
                                 placeholder="" value="{{ $elemento->precioElemento }}">
+                        </div>
+                        <div class="col-6 my-2">
+                            <label for="cantidadElemento" class="">Cantidad<span
+                                    class="spansito">*</span></label>
+                            <input type="text" class="form-control" id="cantidadElemento" name="cantidadElemento"
+                                placeholder="" value="{{ $elemento->cantidadElemento }}">
                         </div>
                         <div class="col-12 my-2">
                             <div id="ee" style="display: none">{{ $elemento->estadoElemento }}</div>

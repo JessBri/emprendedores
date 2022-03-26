@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h4 class="text-center my-4">Lista de categorías</h4>
+                <h4 class="text-center my-4 title">Lista de categorías</h4>
             </div>
             <div class="col-12 col-md-8">
                 <div style="display: none">{{ $cont = 0 }}</div>
@@ -29,7 +29,7 @@
                                         <div class="btn-group">
                                             <a href="{{ route('viewEditarCategoria', $categoria->idCategoria) }}"
                                                 class="pr-2"><i class="bi bi-pencil-fill"></i></a>
-                                            <a href="#"class="borrarLugar">
+                                            <a href="#" class="borrarLugar">
                                                 <p class="idCategoria" hidden>{{ $categoria->idCategoria }}</p>
                                                 <p class="nombreCategoria" hidden>{{ $categoria->nombreCategoria }}</p>
                                                 <i class="bi bi-trash3-fill"></i>

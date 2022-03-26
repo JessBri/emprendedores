@@ -21,9 +21,10 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
+    <nav class="navbar navbar-expand-md shadow-sm fixed-top py-0">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('index') }}">
+            <a class="navbar-brand text-white" href="{{ route('index') }}">
+                <img src="/img/logo.svg" width="50px" />
                 {{ config('app.name', 'Emprendedores') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -42,13 +43,23 @@
                     @if (session('usuarioConectado'))
                         @if (session('usuarioConectado')['tipoEmprendedor'] == 'emprendedor')
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('venta') }}"><i class="bi bi-bag-heart"></i>
+                                    Ventas</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('elemento') }}"><i
-                                        class="bi bi-easel-fill"></i> Mis Articulos</a>
+                                        class="bi bi-easel-fill"></i> Articulos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('direccion') }}"><i
                                         class="bi bi-signpost-2"></i>
-                                    Mis Direcciones</a>
+                                    Direcciones</a>
+                            </li>
+                        @endif
+                        @if (session('usuarioConectado')['tipoEmprendedor'] == 'comprador')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('compra') }}"><i class="bi bi-bag-heart"></i>
+                                    Compras</a>
                             </li>
                         @endif
                         @if (session('usuarioConectado')['tipoEmprendedor'] == 'administrador')
@@ -92,17 +103,25 @@
                                     class="bi bi-box-arrow-in-right"></i>
                                 Iniciar Sesión</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('creaEmprendedor') }}"><i
-                                    class="bi bi-person-plus-fill"></i>
-                                Registrarme</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-person-plus-fill"></i>
+                                Registrarme
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('creaEmprendedor') }}"><i
+                                        class="bi bi-person-circle"></i> Vendedor</a>
+                                <a class="dropdown-item" href="{{ route('creaComprador') }}"><i
+                                        class="bi bi-person-circle"></i> Comprador</a>
+                            </div>
                         </li>
                     @endif
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="container-fluid">
         @yield('contenidoPrincipal')
     </div>
     <!-- Modal cerrar sesion -->
@@ -153,7 +172,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script src="{{ asset('dist/imageViewer/src/js/jquery.imageview.js') }}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
     @yield('scripts')
 </body>

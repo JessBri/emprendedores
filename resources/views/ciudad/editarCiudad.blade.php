@@ -8,7 +8,7 @@
                 <div id="idCiudad" style="display: none">{{ $ciudad->idCiudad }}</div>
                 <h5><a href="{{ route('ciudad') }}" class="float-left"><i class="bi bi-arrow-left-circle"></i></a>
                 </h5>
-                <h5 class="text-center">Editar ciudad</h5>
+                <h5 class="text-center title">Editar ciudad</h5>
             </div>
             <div class="col-md-8 caja p-5 mt-3 mb-5">
                 <form id="formEditaCiudad" method="POST">

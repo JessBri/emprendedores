@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h5 class="text-center mt-3">Cambio de contraseña</h5>
+                <h5 class="text-center mt-3 title">Cambio de contraseña</h5>
             </div>
             <div class="col-md-8 caja px-5 py-4 mt-3 mb-5">
                 <br>

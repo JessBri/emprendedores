@@ -15,6 +15,7 @@ class Elemento extends Model
         'descripcionElemento',
         'precioElemento',
         'estadoElemento',
+        'cantidadElemento',
         'idCategoria',
         'idEmprendedor',
         'tipoElemento',

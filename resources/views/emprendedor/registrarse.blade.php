@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h5 class="text-center mt-3">Registro de emprendedor</h5>
+                <h5 class="text-center mt-3 title">Registro de emprendedor</h5>
             </div>
             <div class="col-md-8 caja px-5 py-4 pt-2 mt-3 mb-5">
                 <br>
@@ -21,6 +21,8 @@
                 <form name="formEmprendedor" id="formEmprendedor" method="post" action="{{ route('nuevoEmprendedor') }}">
                     @csrf
                     <div class="form-row">
+                        <input type="text" id="tipoEmprendedor" name="tipoEmprendedor" placeholder=""
+                            class="form-control d-none" value="emprendedor">
                         <div class="col-6 mb-2">
                             <label for="identificacionEmprendedor">Identificación <span
                                     class="spansito">*</span></label>

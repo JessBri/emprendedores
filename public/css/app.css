@@ -1,5 +1,54 @@
 body {
     padding-top: 70px;
+    font-family: sans-serif;
+    background-color: #f5f5f5;
+    /* background: linear-gradient(135deg, #7ec2f7 0%, #4c1e4b 100%); */
+}
+
+.text-azul {
+    color: #007bff !important;
+}
+
+.text-gris-3 {
+    color: #86888c;
+}
+
+.title {
+    color: #0c0181;
+    font-weight: 700;
+    font-size: 2rem;
+    font-family: cursive;
+}
+
+.categorias:hover {
+    background: #e8f6fe;
+}
+
+.sectionCategoria {
+    background: #d3d4d3;
+}
+
+.caja-resumen {
+    border: 1px solid #019df433;
+    border-radius: 16px;
+    background-color: #e5f5fd;
+}
+
+.icon-rojo {
+    color: red;
+}
+
+.font-cursive {
+    font-family: cursive;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.banner {
+    width: 95%;
+    height: 200px;
 }
 
 .form-control {
@@ -128,6 +177,10 @@ select.error {
     border: 2px dashed #d3d4d3;
 }
 
+.productos {
+    background: linear-gradient(135deg, #eaf8ef 0%, #e8f6fe 100%);
+}
+
 .table {
     border-radius: 4px;
     -webkit-box-shadow: 0 2px 4px 0 rgb(80 83 90 / 30%);
@@ -141,4 +194,63 @@ select.error {
 
 .border-bottom {
     border-bottom: 1px solid #d3d4d3;
+}
+
+.navbar {
+    background-color: #041f66 !important;
+}
+
+.navbar .nav-link {
+    color: #ffffff !important;
+}
+
+.navbar .nav-item {
+    padding-bottom: 0.5rem !important;
+    padding-top: 0.5rem !important;
+}
+
+.navbar .nav-item:hover {
+    background-color: #007bff;
+}
+
+#oilChart {
+    width: 40% !important;
+    height: 40% !important;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.rating > input {
+    display: none;
+}
+
+.rating > label {
+    position: relative;
+    width: 1em;
+    font-size: 4vw;
+    color: #ffd600;
+    cursor: pointer;
+}
+
+.rating > label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
+    opacity: 1 !important;
+}
+
+.rating > input:checked ~ label:before {
+    opacity: 1;
+}
+
+.rating:hover > input:checked ~ label:before {
+    opacity: 0.4;
 }

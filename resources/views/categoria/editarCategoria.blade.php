@@ -8,7 +8,7 @@
                 <div id="idCategoria" style="display: none">{{ $categoria->idCategoria }}</div>
                 <h5><a href="{{ route('categoria') }}" class="float-left"><i class="bi bi-arrow-left-circle"></i></a>
                 </h5>
-                <h5 class="text-center">Editar categoría</h5>
+                <h5 class="text-center title">Editar categoría</h5>
             </div>
             <div class="col-md-8 caja p-5 mt-3 mb-5">
                 <form id="formEditaCategoria" method="POST">

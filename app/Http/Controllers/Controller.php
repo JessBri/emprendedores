@@ -9,6 +9,7 @@ use App\Models\Direccion;
 use App\Models\Ciudad;
 use App\Models\Provincia;
 use App\Models\Categoria;
+use App\Models\Compra;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -26,7 +27,10 @@ class Controller extends BaseController
     public function index(Request $request)
     {
         //PARA CUANDO ESTA EL EMPRENDEDOR CONECTADO
-        if (session()->has('usuarioConectado')) {
+        if (
+            session()->has('usuarioConectado') &&
+            session('usuarioConectado')['tipoEmprendedor'] == 'emprendedor'
+        ) {
             $contProductos = Elemento::where(
                 'idEmprendedor',
                 session('usuarioConectado')['idEmprendedor']
@@ -75,13 +79,16 @@ class Controller extends BaseController
                 }
             }
 
+            $categorias = Categoria::all();
+
             return view(
                 'index.index',
                 compact(
                     'elementos',
                     'contEventos',
                     'contServicios',
-                    'contProductos'
+                    'contProductos',
+                    'categorias'
                 )
             );
         } else {
@@ -131,13 +138,16 @@ class Controller extends BaseController
                 }
             }
 
+            $categorias = Categoria::all();
+
             return view(
                 'index.index',
                 compact(
                     'elementos',
                     'contEventos',
                     'contServicios',
-                    'contProductos'
+                    'contProductos',
+                    'categorias'
                 )
             );
         }
@@ -146,10 +156,15 @@ class Controller extends BaseController
     public function detalleElemento($idElemento)
     {
         $elemento = Elemento::where('idElemento', $idElemento)->first();
+        $categoria = Categoria::where(
+            'idCategoria',
+            $elemento->idCategoria
+        )->first();
         $emprendedor = Emprendedor::where(
             'idEmprendedor',
             $elemento->idEmprendedor
         )->first();
+        $compras = Compra::where('idElemento', $idElemento)->get();
         $imagenes = Imagen::where('idElemento', $idElemento)->get();
         $direcciones = Direccion::where(
             'idEmprendedor',
@@ -168,20 +183,28 @@ class Controller extends BaseController
         if ($elemento) {
             return view(
                 'imagen.detalleElemento',
-                compact('elemento', 'imagenes', 'direcciones', 'emprendedor')
+                compact(
+                    'elemento',
+                    'imagenes',
+                    'direcciones',
+                    'emprendedor',
+                    'categoria',
+                    'compras'
+                )
             );
         }
     }
 
-    public function buscador(Request $request)
+    public function porCategoria(Request $request, $idCategoria)
     {
-        $elementos = Elemento::where(
-            'nombreElemento',
-            'like',
-            $request->texto . '%'
-        )
-            ->take(10)
-            ->get();
+        $nombre = $request->get('buscarpor');
+        if ($nombre) {
+            $elementos = Elemento::nombres($nombre)->get();
+        } else {
+            $elementos = Elemento::where('idCategoria', $idCategoria)->get();
+        }
+
+        $categorias = Categoria::all();
         foreach ($elementos as $elemento) {
             $imagen = Imagen::where(
                 'idElemento',
@@ -200,7 +223,144 @@ class Controller extends BaseController
                 $elemento->imagenElemento = $imagen;
             }
         }
-        return view('index.index', compact('elementos'));
+
+        return view(
+            'index.lista',
+            compact('elementos', 'categorias', 'idCategoria')
+        );
+    }
+
+    public function buscador(Request $request)
+    {
+        //PARA CUANDO ESTA EL EMPRENDEDOR CONECTADO
+        if (
+            session()->has('usuarioConectado') &&
+            session('usuarioConectado')['tipoEmprendedor'] == 'emprendedor'
+        ) {
+            $contProductos = Elemento::where(
+                'idEmprendedor',
+                session('usuarioConectado')['idEmprendedor']
+            )
+                ->where('estadoElemento', 1)
+                ->where('tipoElemento', 'producto')
+                ->get();
+            $contServicios = Elemento::where(
+                'idEmprendedor',
+                session('usuarioConectado')['idEmprendedor']
+            )
+                ->where('estadoElemento', 1)
+                ->where('tipoElemento', 'servicio')
+                ->get();
+            $contEventos = Elemento::where(
+                'idEmprendedor',
+                session('usuarioConectado')['idEmprendedor']
+            )
+                ->where('estadoElemento', 1)
+                ->where('tipoElemento', 'evento')
+                ->get();
+
+            $elementos = Elemento::where(
+                'idEmprendedor',
+                session('usuarioConectado')['idEmprendedor']
+            )
+                ->where('estadoElemento', 1)
+                ->get();
+
+            foreach ($elementos as $elemento) {
+                $imagen = Imagen::where(
+                    'idElemento',
+                    $elemento->idElemento
+                )->first();
+                $categoria = Categoria::where(
+                    'idCategoria',
+                    $elemento->idCategoria
+                )->first();
+                $categoria->idCategoria = $categoria;
+                if ($imagen) {
+                    $elemento->imagenElemento = $imagen;
+                } else {
+                    $imagen = new Imagen();
+                    $imagen->urlImagen = 'uploads/nodisponible.jpg';
+                    $elemento->imagenElemento = $imagen;
+                }
+            }
+
+            $categorias = Categoria::all();
+            $idCategoria = '';
+
+            return view(
+                'index.lista',
+                compact(
+                    'elementos',
+                    'contEventos',
+                    'contServicios',
+                    'contProductos',
+                    'categorias',
+                    'idCategoria'
+                )
+            );
+        } else {
+            //PARA CUANDO NO ESTA EL EMPRENDEDOR CONECTADO
+
+            $nombre = $request->get('buscarpor');
+            if ($nombre) {
+                $elementos = Elemento::nombres($nombre)->get();
+            } else {
+                $elementos = Elemento::where('estadoElemento', 1)->get();
+            }
+
+            $prod = Elemento::where('estadoElemento', 1)
+                ->where('tipoElemento', 'producto')
+                ->get();
+
+            $contProductos = $prod->count();
+
+            $serv = Elemento::where('estadoElemento', 1)
+                ->where('tipoElemento', 'servicio')
+                ->get();
+
+            $contServicios = $serv->count();
+
+            $even = Elemento::where('estadoElemento', 1)
+                ->where('tipoElemento', 'evento')
+                ->get();
+
+            $contEventos = $even->count();
+
+            foreach ($elementos as $elemento) {
+                $imagen = Imagen::where(
+                    'idElemento',
+                    $elemento->idElemento
+                )->first();
+                $categoria = Categoria::where(
+                    'idCategoria',
+                    $elemento->idCategoria
+                )->first();
+                $elemento->idCategoria = $categoria;
+                if ($imagen) {
+                    $elemento->imagenElemento = $imagen;
+                } else {
+                    $imagen = new Imagen();
+                    $imagen->urlImagen = 'uploads/nodisponible.jpg';
+                    $elemento->imagenElemento = $imagen;
+                }
+            }
+
+            $categorias = Categoria::all();
+            $idCategoria = '';
+
+            return view(
+                'index.lista',
+                compact(
+                    'elementos',
+                    'contEventos',
+                    'contServicios',
+                    'contProductos',
+                    'categorias',
+                    'idCategoria'
+                )
+            );
+        }
     }
 
     public function login(Request $request)

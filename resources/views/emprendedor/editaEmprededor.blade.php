@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h5 class="text-center mt-3">Perfil de {{ $emprendedor->nombreEmprendedor }}
+                <h5 class="text-center mt-3 title">Perfil de {{ $emprendedor->nombreEmprendedor }}
                     {{ $emprendedor->apellidoEmprendedor }}</h5>
             </div>
             <div class="col-md-8 caja px-5 py-5 mt-3 mb-5">

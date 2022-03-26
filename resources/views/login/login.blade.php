@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <br>
                 <center>
-                    <h5>Inicia sesión</h5>
+                    <h5 class="title">Inicia sesión</h5>
                 </center>
                 <br>
             </div>

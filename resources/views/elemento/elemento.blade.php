@@ -5,8 +5,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h4 class="text-center my-4">Lista de artículos para {{ $emprendedor->nombreEmprendedor }}
-                    {{ $emprendedor->apellidoEmprendedor }}</h4>
+                <h3 class="text-center my-4 title">Lista de artículos para {{ $emprendedor->nombreEmprendedor }}
+                    {{ $emprendedor->apellidoEmprendedor }}</h3>
             </div>
             <div class="col-12">
                 <div style="display: none">{{ $cont = 0 }}</div>
