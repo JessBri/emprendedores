@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
                 <center>
-                    <h5><i class="bi bi-exclamation-circle"></i> Cambio de contraseña</h5>
+                    <h5 class="title"><i class="bi bi-exclamation-circle"></i> Cambio de contraseña</h5>
                     <p>Hola {{ $emprendedor->nombreEmprendedor }} {{ $emprendedor->apellidoEmprendedor }}, por favor
                         llena el formulario para cambiar su contraseña</p>
                     <div id="codigoEmprendedor" style="display: none">{{ $emprendedor->codigoEmprendedor }}</div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\CiudadControlador;
 use App\Http\Controllers\ImagenControlador;
 use App\Http\Controllers\EmprendedorControlador;
 use App\Http\Controllers\ElementoControlador;
+use App\Http\Controllers\CompraControlador;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Mail;
@@ -26,7 +27,15 @@ use Illuminate\Support\Str;
 
 Route::get('/', [Controller::class, 'index'])->name('index');
 
-Route::get('/detalle/{idActiculo}', [Controller::class, 'detalleElemento'])->name('detalleElemento');
+Route::get('/detalle/{idActiculo}', [
+    Controller::class,
+    'detalleElemento',
+])->name('detalleElemento');
+
+Route::get('/buscador', [Controller::class, 'buscador'])->name('buscador');
+Route::get('/lista/{idCategoria}', [Controller::class, 'porCategoria'])->name(
+    'porCategoria'
+);
 
 //Login
 
@@ -73,10 +82,31 @@ Route::get('/imagen/{elemento}', [
 Route::post('/subeImagen', [ImagenControlador::class, 'subeImagen'])->name(
     'subeImagen'
 );
+
 Route::post('/eliminaImagen/{idImagen}{idElemento}', [
     ImagenControlador::class,
     'eliminaImagen',
 ])->name('eliminaImagen');
+
+//Compras
+
+Route::get('/compra', [CompraControlador::class, 'compra'])->name('compra');
+
+Route::get('/venta', [CompraControlador::class, 'venta'])->name('venta');
+
+Route::post('/compra', [CompraControlador::class, 'crearCompra'])->name(
+    'crearCompra'
+);
+
+Route::post('/compra/editar/{idCompra}', [
+    CompraControlador::class,
+    'editarCompra',
+])->name('editarCompra');
+
+Route::get('/compra/detalle/{idCompra}', [
+    CompraControlador::class,
+    'detalleCompra',
+])->name('detalleCompra');
 
 //Emprendedor
 
@@ -84,6 +114,11 @@ Route::get('/emprendedor/nuevo', [
     EmprendedorControlador::class,
     'creaEmprendedor',
 ])->name('creaEmprendedor');
+
+Route::get('/comprador/nuevo', [
+    EmprendedorControlador::class,
+    'creaComprador',
+])->name('creaComprador');
 
 Route::post('/emprendedor/nuevo', [
     EmprendedorControlador::class,
@@ -243,15 +278,19 @@ Route::delete('/ciudad/eliminar/{idDireccion}', [
 
 //Elemento
 
-Route::get('/elemento',[ElementoControlador::class, 'elemento'])->name('elemento');
+Route::get('/elemento', [ElementoControlador::class, 'elemento'])->name(
+    'elemento'
+);
 
 Route::get('/elemento/crear', [
     ElementoControlador::class,
     'viewCrearElemento',
 ])->name('viewCrearElemento');
 
-Route::post('/elemento/crear',[ElementoControlador::class, 'nuevoElemento'])->name('nuevoElemento');
-
+Route::post('/elemento/crear', [
+    ElementoControlador::class,
+    'nuevoElemento',
+])->name('nuevoElemento');
 
 Route::get('/elemento/editar/{idElemento}', [
     ElementoControlador::class,

@@ -16,7 +16,7 @@ class CreateElementosTable extends Migration
         Schema::create('elementos', function (Blueprint $table) {
             $table->bigIncrements('idElemento');
             $table->string('nombreElemento');
-            $table->string('descripcionElemento');
+            $table->longText('descripcionElemento');
             $table->decimal('precioElemento', 10, 2);
             $table->boolean('estadoElemento');
             $table->string('tipoElemento');
@@ -32,6 +32,7 @@ class CreateElementosTable extends Migration
                 ->foreign('idEmprendedor')
                 ->references('idEmprendedor')
                 ->on('emprendedors');
+            $table->integer('cantidadElemento');
             $table->timestamps();
         });
     }

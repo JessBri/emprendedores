@@ -15,15 +15,24 @@ class ElementoControlador extends Controller
     {
         if (session()->has('usuarioConectado')) {
             $idemprendedor = session('usuarioConectado')['idEmprendedor'];
-            $emprendedor = Emprendedor::where('idEmprendedor', '=', $idemprendedor)->first();
-            $elementos = Elemento::all()->where('idEmprendedor', '=', $idemprendedor);
-            return view('elemento.elemento', compact('elementos', 'emprendedor'));
+            $emprendedor = Emprendedor::where(
+                'idEmprendedor',
+                '=',
+                $idemprendedor
+            )->first();
+            $elementos = Elemento::all()->where(
+                'idEmprendedor',
+                '=',
+                $idemprendedor
+            );
+            return view(
+                'elemento.elemento',
+                compact('elementos', 'emprendedor')
+            );
         } else {
             return redirect()->route('index');
         }
     }
-
-
 
     public function viewCrearElemento(Request $request)
     {
@@ -35,37 +44,44 @@ class ElementoControlador extends Controller
         }
     }
 
-
     public function nuevoElemento(Request $request)
     {
         if (session()->has('usuarioConectado')) {
-
-            if($request->fechaInicioFecha != "" || $request->fechaFinFecha != "" ){
+            if (
+                $request->fechaInicioFecha != '' ||
+                $request->fechaFinFecha != ''
+            ) {
                 $fInicio = Carbon::parse($request->fechaInicioFecha);
                 $fInicio->format('Y/m/d');
                 $fFin = Carbon::parse($request->fechaFinFecha);
                 $fFin->format('Y/m/d');
-            }else{
+            } else {
                 $fInicio = null;
                 $fFin = null;
             }
-
 
             Elemento::create([
                 'nombreElemento' => $request->nombreElemento,
                 'descripcionElemento' => $request->descripcionElemento,
                 'precioElemento' => $request->precioElemento,
                 'estadoElemento' => $request->estadoElemento,
+                'cantidadElemento' => $request->cantidadElemento,
                 'idCategoria' => $request->idCategoria,
                 'idEmprendedor' => session('usuarioConectado')['idEmprendedor'],
                 'tipoElemento' => $request->tipoElemento,
                 'fechaInicioElemento' => $fInicio,
-                'fechaFinElemento' => $fFin
+                'fechaFinElemento' => $fFin,
             ]);
 
-            return back()->with('success', 'El elemento fue registrado exitosamente.');
+            return back()->with(
+                'success',
+                'El elemento fue registrado exitosamente.'
+            );
         } else {
-            return back()->with('error', 'El elemento ya se encuentra registrado');
+            return back()->with(
+                'error',
+                'El elemento ya se encuentra registrado'
+            );
         }
 
         return back()->with('error', 'Error de servidor');
@@ -85,22 +101,22 @@ class ElementoControlador extends Controller
         }
     }
 
-
     public function editarElemento(Request $request, $idElemento)
     {
         $elemento = Elemento::where('idElemento', $idElemento)->first();
         if ($elemento) {
-
-            if($request->fechaInicioFecha != "" || $request->fechaFinFecha != "" ){
+            if (
+                $request->fechaInicioFecha != '' ||
+                $request->fechaFinFecha != ''
+            ) {
                 $fInicio = Carbon::parse($request->fechaInicioFecha);
                 $fInicio->format('Y/m/d');
                 $fFin = Carbon::parse($request->fechaFinFecha);
                 $fFin->format('Y/m/d');
-            }else{
+            } else {
                 $fInicio = null;
                 $fFin = null;
             }
-
 
             $elemento->nombreElemento = $request->nombreElemento;
             $elemento->descripcionElemento = $request->descripcionElemento;
@@ -112,7 +128,10 @@ class ElementoControlador extends Controller
 
             $elemento->save();
 
-            return back()->with('success', 'La información fue actualizada correctamente.');
+            return back()->with(
+                'success',
+                'La información fue actualizada correctamente.'
+            );
         } else {
             return back()->with('error', 'Error al actualizar la información');
         }
@@ -124,7 +143,8 @@ class ElementoControlador extends Controller
             $imagenes = Imagen::where('idElemento', $idElemento)->get();
 
             foreach ($imagenes as $image) {
-                $image_path = public_path('uploads') . '/' . $image->nombreImagen;
+                $image_path =
+                    public_path('uploads') . '/' . $image->nombreImagen;
                 unlink($image_path);
                 $image->delete();
             }

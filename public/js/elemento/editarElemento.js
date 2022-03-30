@@ -1,19 +1,31 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    console.log();
+
+    $('#tipoElemento').on('change', function () {
+        console.log(this.value);
+        if (this.value == "evento") {
+            $('#fini').removeClass('d-none');
+            $('#ffin').removeClass('d-none');
+        } else {
+            $('#fini').addClass('d-none');
+            $('#ffin').addClass('d-none');
+        }
+    });
 
 
     $("#fechaInicioFecha").datetimepicker({
         format: 'DD-MM-YYYY',
-        locale:  moment.locale('es', {
+        locale: moment.locale('es', {
             week: { dow: 1 }
         }),
-        minDate:new Date(new Date().getTime() - 24*60*60*1000),
-        showTodayButton:true,
+        minDate: new Date(new Date().getTime() - 24 * 60 * 60 * 1000),
+        showTodayButton: true,
         icons: {
             time: 'fas fa-clock',
             date: 'fas fa-calendar-week',
@@ -45,11 +57,11 @@ $(document).ready(function(){
 
     $("#fechaFinFecha").datetimepicker({
         format: 'DD-MM-YYYY',
-        locale:  moment.locale('es', {
+        locale: moment.locale('es', {
             week: { dow: 1 }
         }),
-        minDate:new Date(new Date().getTime() - 24*60*60*1000),
-        showTodayButton:true,
+        minDate: new Date(new Date().getTime() - 24 * 60 * 60 * 1000),
+        showTodayButton: true,
         icons: {
             time: 'fas fa-clock',
             date: 'fas fa-calendar-week',
@@ -81,9 +93,16 @@ $(document).ready(function(){
 
     console.log($("#te").text());
 
-    $("#tipoElemento").val($("#te").text());
+    // $("#tipoElemento").val($("#te").text());
     $("#idCategoria").val($("#ic").text());
     $("#estadoElemento").val($("#ee").text());
+    if ($("#tipoElemento").val() == "evento") {
+        $('#fini').removeClass('d-none');
+        $('#ffin').removeClass('d-none');
+    } else {
+        $('#fini').addClass('d-none');
+        $('#ffin').addClass('d-none');
+    }
 
     console.log($("#ee").text());
 

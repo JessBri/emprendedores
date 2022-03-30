@@ -9,7 +9,7 @@
                 </div>
                 <h5><a href="{{ route('direccion') }}" class="float-left"><i class="bi bi-arrow-left-circle"></i></a>
                 </h5>
-                <h5 class="text-center">Editar dirección</h5>
+                <h5 class="text-center title">Editar dirección</h5>
             </div>
             <div class="col-md-8 caja mt-3 mb-5 p-5">
                 <form id="formDireccion" method="POST">

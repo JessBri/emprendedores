@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h4 class="text-center my-4">Lista de Provincias</h4>
+                <h4 class="text-center my-4 title">Lista de Provincias</h4>
             </div>
             <div class="col-8">
                 <div style="display: none">{{ $cont = 0 }}</div>
