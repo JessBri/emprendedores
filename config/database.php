@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Str;
 
-$DATABASE_URL = parse_url(
-    'mysql://sbbzvzcayi729dh4:n97u4h6we9jgs6xk@vkh7buea61avxg07.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ildxacgjblbp011l'
-);
-
 return [
     /*
     |--------------------------------------------------------------------------
@@ -50,8 +46,7 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            // 'database' => env('DB_DATABASE', 'forge'),
-            'database' => ltrim($DATABASE_URL['path'], '/'),
+            'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
