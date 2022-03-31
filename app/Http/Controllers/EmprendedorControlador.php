@@ -60,7 +60,8 @@ class EmprendedorControlador extends Controller
             $correo = $request->correoEmprendedor;
             $data = [
                 'link' =>
-                    'http://127.0.0.1:8000/emprendedor/' . $codigoGenerado,
+                    'https://emprendedoresecuador.herokuapp.com/' .
+                    $codigoGenerado,
                 'nombre' =>
                     $request->nombreEmprendedor .
                     ' ' .

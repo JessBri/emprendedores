@@ -24,7 +24,7 @@
             <h4 class="title text-center my-5">Selecciona una categoria</h4>
             <div class="row">
                 @foreach ($categorias as $categoria)
-                    <a class="col-2 caja categorias text-center" style="width:170px; height:170px;"
+                    <a class="col-4 col-md-2 caja categorias text-center" style="width:170px; height:170px;"
                         href="{{ route('porCategoria', $categoria->idCategoria) }}">
                         <div class="my-4">
                             @php
@@ -39,16 +39,16 @@
         </div>
     </div>
     <div class="row justify-content-center py-5">
-        <div class="col-5 text-center px-5">
+        <div class="col-12 col-md-5 text-center px-5">
             <h3 class="my-3">Emprendedores</h3>
-            <h5 class="mt'2">Emprendedores es una aplicación web en la que puedes vender y comprar los productos y
+            <h5 class="mt-2">Emprendedores es una aplicación web en la que puedes vender y comprar los productos y
                 servicios que necesites.
             </h5>
             <h5>Aquí puedes ver el total de los artículos que tenemos actualmente
             </h5>
             <i class="bi bi-arrow-right text-azul" style="font-size: 40px"></i>
         </div>
-        <div class="col-5 text-center">
+        <div class="col-12 col-md-5 text-center">
             <div class="chart-container">
                 <canvas id="oilChart" class="mx-auto"></canvas>
             </div>
@@ -69,7 +69,7 @@
 
 
     <div class="row justify-content-center py-5 sectionCategoria">
-        <div class="col-3 info-slide text-center">
+        <div class="col-12 col-md-3 info-slide text-center">
             <div class="img-container"><img
                     src="https://http2.mlstatic.com/resources/frontend/homes-korriban/assets/images/ecosystem/buy-heart.svg"
                     class="img-container" alt="Compra sin moverte"></div>
@@ -77,7 +77,7 @@
             <p><span>Encuentra lo que necesitas, y coordina el pago y la entrega con el vendedor. Es fácil y rápido.
                     ¡Todos podemos hacerlo!</span></p>
         </div>
-        <div class="col-3 info-slide text-center">
+        <div class="col-12 col-md-3 my-4 my-md-0 info-slide text-center">
             <div class="img-container"><img
                     src="https://http2.mlstatic.com/resources/frontend/homes-korriban/assets/images/ecosystem/shipping.svg"
                     class="img-container" alt="Recibe tu producto"></div>
@@ -85,7 +85,7 @@
             <p><span>Acuerda la entrega de tu compra con el vendedor. Puedes recibirlo en tu casa, en la oficina o
                     retirarlo. ¡Tú decides qué prefieres!</span></p>
         </div>
-        <div class="col-3 info-slide text-center">
+        <div class="col-12 col-md-3 info-slide text-center">
             <div class="img-container"><img
                     src="https://http2.mlstatic.com/resources/frontend/homes-korriban/assets/images/ecosystem/free-sell.svg"
                     class="img-container" alt="Vende 100% gratis"></div>

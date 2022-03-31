@@ -40,9 +40,9 @@
             <div class="row mb-5">
 
                 @foreach ($elementos as $elemento)
-                    <div class="col-md-12 px-4 mt-3">
+                    <div class="col-md-12 px-md-4 mt-3">
                         <div class="row caja productos px-3 py-3">
-                            <div class="col-10">
+                            <div class="col-7 col-md-10">
                                 <a href="{{ route('detalleElemento', $elemento->idElemento) }}" class="mt-3">
                                     <h4 class="bold mt-3">{{ $elemento->nombreElemento }}</h4>
                                 </a>
@@ -52,7 +52,7 @@
                                     <h4>$ {{ $elemento->precioElemento }}</h4>
                                 @endif
                             </div>
-                            <div class="col-2">
+                            <div class="col-5 col-md-2 align-self-center">
                                 <img src="{{ '/' . $elemento->imagenElemento->urlImagen }}" class="rounded"
                                     alt="{{ $elemento->imagenElemento->nombreImagen }}" style="width: 130px" />
                             </div>

@@ -213,6 +213,11 @@ select.error {
     background-color: #007bff;
 }
 
+.navbar-toggler-icon {
+    background-image: url("../img/navbar.svg");
+    background-size: contain;
+}
+
 #oilChart {
     width: 40% !important;
     height: 40% !important;
@@ -253,4 +258,11 @@ select.error {
 
 .rating:hover > input:checked ~ label:before {
     opacity: 0.4;
+}
+
+@media (max-width: 480px) {
+    .h4,
+    h4 {
+        font-size: 1.2rem;
+    }
 }

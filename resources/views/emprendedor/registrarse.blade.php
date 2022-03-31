@@ -23,23 +23,23 @@
                     <div class="form-row">
                         <input type="text" id="tipoEmprendedor" name="tipoEmprendedor" placeholder=""
                             class="form-control d-none" value="emprendedor">
-                        <div class="col-6 mb-2">
+                        <div class="col-12 col-md-6 mb-2">
                             <label for="identificacionEmprendedor">Identificación <span
                                     class="spansito">*</span></label>
                             <input type="text" id="identificacionEmprendedor" name="identificacionEmprendedor"
                                 placeholder="" class="form-control">
                         </div>
-                        <div class="col-6 mb-2">
+                        <div class="col-12 col-md-6 mb-2">
                             <label for="apellidoEmprendedor">E-mail <span class="spansito">*</span></label>
                             <input type="text" id="correoEmprendedor" name="correoEmprendedor" placeholder=""
                                 class="form-control">
                         </div>
-                        <div class="col-6 my-2">
+                        <div class="col-12 col-md-6 my-2">
                             <label for="nombreEmprendedor">Nombre <span class="spansito">*</span></label>
                             <input type="text" id="nombreEmprendedor" name="nombreEmprendedor" placeholder=""
                                 class="form-control">
                         </div>
-                        <div class="col-6 my-2">
+                        <div class="col-12 col-md-6 my-2">
                             <label for="apellidoEmprendedor">Apellido <span class="spansito">*</span></label>
                             <input type="text" id="apellidoEmprendedor" name="apellidoEmprendedor" placeholder=""
                                 class="form-control">

@@ -10,12 +10,12 @@
                     $suma = 0;
                     $cantidad = 0;
                 @endphp
-                <div class="col-7">
+                <div class="col-12 col-md-7">
                     <div class="row">
                         @foreach ($compras as $compra)
                             <div class="col-md-12 px-4 mt-3">
                                 <div class="row caja productos px-3 py-3">
-                                    <div class="col-9">
+                                    <div class="col-7 col-md-9">
                                         <h4 class="bold mt-3 text-azul">{{ $compra->elementos->nombreElemento }}</h4>
                                         @if ($compra->elementos->precioElemento == '0.00')
                                             <h4>Gratis</h4>
@@ -34,7 +34,7 @@
                                             $cantidad += $compra->cantidadCompra;
                                         @endphp
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-5 col-md-3 align-self-center">
                                         <img src="{{ $compra->elementos->imagenElemento->urlImagen }}"
                                             class="rounded"
                                             alt="{{ $compra->elementos->imagenElemento->nombreImagen }}"
@@ -45,7 +45,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="col-5 px-4 mt-3 ">
+                <div class="col-12 col-md-5 px-4 mt-3 ">
                     <div class="contaniner alert alert-success p-5">
                         <div class="row pb-4">
                             <div class="col-7">

@@ -17,7 +17,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
     @yield('csss')
 
-    <title>Proyecto Emprendedores</title>
+    <title>Emprendedores</title>
 </head>
 
 <body>
